@@ -1,0 +1,1 @@
+﻿public enum EPalo { Espada, Basto, Oro, Copa}
