@@ -103,9 +103,9 @@ namespace Vista
             this.chk_esUsuario.ForeColor = System.Drawing.Color.White;
             this.chk_esUsuario.Location = new System.Drawing.Point(450, 130);
             this.chk_esUsuario.Name = "chk_esUsuario";
-            this.chk_esUsuario.Size = new System.Drawing.Size(83, 19);
+            this.chk_esUsuario.Size = new System.Drawing.Size(79, 19);
             this.chk_esUsuario.TabIndex = 4;
-            this.chk_esUsuario.Text = "checkBox1";
+            this.chk_esUsuario.Text = "Es usuario";
             this.chk_esUsuario.UseVisualStyleBackColor = true;
             this.chk_esUsuario.Visible = false;
             // 

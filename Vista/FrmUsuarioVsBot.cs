@@ -308,17 +308,21 @@ namespace Vista
             }
             else
             {   
-                if(!this.tokenCancelacion.IsCancellationRequested)
+                if(this.partida is not null)
                 {
-                    MessageBox.Show("Debe cancelar la partida para poder cerrarlo");
-                    e.Cancel = true;
-                    return;
+                    if(!this.tokenCancelacion.IsCancellationRequested)
+                    {
+                        MessageBox.Show("Debe cancelar la partida para poder cerrarlo");
+                        e.Cancel = true;
+                        return;
+                    }
+                    if(formJugarTurno.DialogResult != DialogResult.OK)
+                    {
+                        formJugarTurno.DialogResult = DialogResult.OK;
+                    }
+                    this.fuenteTokenCancelacion.Cancel();               
+
                 }
-                if(formJugarTurno.DialogResult != DialogResult.OK)
-                {
-                    formJugarTurno.DialogResult = DialogResult.OK;
-                }
-                this.fuenteTokenCancelacion.Cancel();               
             }
         }
         /// <summary>
