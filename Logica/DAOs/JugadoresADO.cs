@@ -20,7 +20,6 @@ namespace Entidades
 
         public List<Jugador> ObtenerJugadores()
         {
-            string retorno = "Demoro la conexión a la base de datos. Intentelo nuevamente...";
             List<Jugador> listaJugadores = new List<Jugador>();
             try
             {                
@@ -43,9 +42,9 @@ namespace Entidades
                         listaJugadores.Add(auxJugador);
                     }
                 }
-                retorno = "Conexion a base de datos exitosa";
+
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 throw new Exception("No se ha podido obtener la lista de jugadores de la base de datos");
             }
@@ -79,7 +78,7 @@ namespace Entidades
                 comando.Parameters.Clear();
                 
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 throw new Exception("No se ha podido actualizar el jugador en base de datos");
             }
@@ -108,7 +107,7 @@ namespace Entidades
                }
                 comando.Parameters.Clear();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception("No se ha podido eliminar al jugador de la base de datos");
             }
@@ -139,7 +138,7 @@ namespace Entidades
                }
                comando.Parameters.Clear();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception("No se ha podido agregar al jugador a la base de datos");
             }

@@ -67,6 +67,7 @@ namespace Entidades
             return this.cartaTirada;
             //return this.cartasEnMano[new Random().Next(0, CantidadCartasEnMano)];
         }
+
         /// <summary>
         /// Se fija si tiene una carta mejor a la del oponenta, sino tira la mas baja
         /// </summary>
@@ -326,6 +327,10 @@ namespace Entidades
         public override string ToString()
         {
             return $"{this.nombre} - Jugadas: {this.partidasJugadas} - Ganadas: {this.partidasGanadas} - Perdidas: {this.partidasPerdidas}";
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         public int Puntaje { get => this.puntaje; set => this.puntaje = value; }

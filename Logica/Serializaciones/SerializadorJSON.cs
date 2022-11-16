@@ -17,7 +17,6 @@ namespace Entidades
         public SerializadorJSON()
         {
             ruta = Environment.CurrentDirectory;
-            //ruta = @"C:\Users\Usuario\source\repos\Sullivan.Nathan.TP2\Vista\bin\Debug\net5.0-windows";
             ruta += "\\ArchivosJSON";
         }
         
@@ -29,17 +28,13 @@ namespace Entidades
             {
                 Directory.CreateDirectory(ruta);
             }
-            /* JsonSerializerOptions opciones = new JsonSerializerOptions()
-             {
-                 Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)},
-             };*/
             try
             {
                 string json = JsonSerializer.Serialize(datos);
                 File.WriteAllText(rutaCompleta, json);
                 retorno = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception($"No se ha podido serializar en json datos del tipo {typeof(T).ToString()}");
             }
@@ -63,7 +58,7 @@ namespace Entidades
                 File.WriteAllText(rutaCompleta, json);
                 retorno = true;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 throw new Exception($"No se ha podido serializar en json datos del tipo {typeof(T).ToString()}");
             }

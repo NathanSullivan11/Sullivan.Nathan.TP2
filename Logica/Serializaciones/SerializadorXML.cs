@@ -39,7 +39,7 @@ namespace Entidades
                 }
                 retorno = true;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 throw new Exception($"No se ha podido serializar en xml datos del tipo {typeof(T).ToString()}");
             }
@@ -67,7 +67,7 @@ namespace Entidades
                 }
                 retorno = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception($"No se ha podido serializar en xml datos del tipo {typeof(T).ToString()}");
             }
@@ -92,7 +92,7 @@ namespace Entidades
                     datos = (T)xmlSerializer.Deserialize(streamReader);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception($"No se ha podido deserializar en xml los datos de tipo {typeof(T).ToString()}");
             }

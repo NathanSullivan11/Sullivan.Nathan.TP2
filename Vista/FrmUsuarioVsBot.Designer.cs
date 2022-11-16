@@ -49,6 +49,7 @@ namespace Vista
             this.btn_CerrarSinGuardar = new System.Windows.Forms.Button();
             this.pictureBox_bot = new System.Windows.Forms.PictureBox();
             this.pictureBox_Usuario = new System.Windows.Forms.PictureBox();
+            this.btn_CancelarPartida = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel_tablaPuntajes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bot)).BeginInit();
@@ -152,6 +153,7 @@ namespace Vista
             this.lbl_mensajeAnunciarGanador.Size = new System.Drawing.Size(228, 26);
             this.lbl_mensajeAnunciarGanador.TabIndex = 0;
             this.lbl_mensajeAnunciarGanador.Text = "Anunciar ganador";
+            this.lbl_mensajeAnunciarGanador.Visible = false;
             // 
             // btn_Jugar
             // 
@@ -296,6 +298,23 @@ namespace Vista
             this.pictureBox_Usuario.TabStop = false;
             this.pictureBox_Usuario.Visible = false;
             // 
+            // btn_CancelarPartida
+            // 
+            this.btn_CancelarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(149)))), ((int)(((byte)(68)))));
+            this.btn_CancelarPartida.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_CancelarPartida.FlatAppearance.BorderSize = 0;
+            this.btn_CancelarPartida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CancelarPartida.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_CancelarPartida.ForeColor = System.Drawing.Color.White;
+            this.btn_CancelarPartida.Location = new System.Drawing.Point(37, 58);
+            this.btn_CancelarPartida.Name = "btn_CancelarPartida";
+            this.btn_CancelarPartida.Size = new System.Drawing.Size(174, 40);
+            this.btn_CancelarPartida.TabIndex = 3;
+            this.btn_CancelarPartida.Text = "Cancelar partida";
+            this.btn_CancelarPartida.UseVisualStyleBackColor = false;
+            this.btn_CancelarPartida.Visible = false;
+            this.btn_CancelarPartida.Click += new System.EventHandler(this.btn_CancelarPartida_Click);
+            // 
             // FrmUsuarioVsBot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -312,6 +331,7 @@ namespace Vista
             this.Controls.Add(this.flp_cartasEnMesaJ2);
             this.Controls.Add(this.flp_cartasEnMesaJ1);
             this.Controls.Add(this.flp_cartasEnManoJ1);
+            this.Controls.Add(this.btn_CancelarPartida);
             this.Controls.Add(this.btn_Jugar);
             this.Controls.Add(this.panel_tablaPuntajes);
             this.Controls.Add(this.pictureBox_Usuario);
@@ -350,5 +370,6 @@ namespace Vista
         private System.Windows.Forms.Button btn_CerrarSinGuardar;
         private System.Windows.Forms.PictureBox pictureBox_bot;
         private System.Windows.Forms.PictureBox pictureBox_Usuario;
+        private System.Windows.Forms.Button btn_CancelarPartida;
     }
 }

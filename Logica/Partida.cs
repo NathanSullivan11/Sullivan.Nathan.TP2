@@ -26,6 +26,8 @@ namespace Entidades
         private int puntajeParaGanar;
         private int puntosDelTruco;
         private bool partidaFinalizada;
+        private bool partidaCancelada;
+        private CancellationToken tokenCancelacion;
 
         public event Action<string> actualizarLog;
         public event Action<string,bool> enviarMensaje;
@@ -35,6 +37,7 @@ namespace Entidades
         public event Func<string> pedirJugadaUsuario;
         public event Action manoTerminada;
         public event Action partidaTerminada;
+
 
         public Jugador JugadorMano
         {
@@ -65,7 +68,7 @@ namespace Entidades
                 }
             }
         }
-
+        
         public Jugador ObtenerQuienGanoPrimera()
         {
             int resultado = Juego.CompararCartas(this.mesa.cartasTiradasPorJ1[0], this.mesa.cartasTiradasPorJ2[0]);
@@ -127,6 +130,7 @@ namespace Entidades
 
         public void ComenzarPartida(CancellationToken token)
         {
+            this.tokenCancelacion = token;
             this.InicializarPartida();
             
             do
@@ -135,7 +139,10 @@ namespace Entidades
 
             } while (this.hayGanador is null && !token.IsCancellationRequested);
 
-      
+            if(partidaCancelada)
+            {
+                return;
+            }
             this.partidaTerminada.Invoke();
 
             this.TerminarPartida();
@@ -146,6 +153,7 @@ namespace Entidades
             this.ActualizarEstadisticasJugadores();
             if(this.actualizarLog is not null)
             {
+                
                 this.actualizarLog.Invoke($"\nGANADOR J{this.hayGanador.Puntaje} - {this.hayGanador.Nombre} ");
 
             }
@@ -154,8 +162,7 @@ namespace Entidades
             this.jugador2.EstaJugando = false;
             Juego.ActualizarJugadorEnBaseDeDatos(jugador1);
             Juego.ActualizarJugadorEnBaseDeDatos(jugador2);
-
-
+            this.partidaTerminada.Invoke();
         }
 
         private void ActualizarEstadisticasJugadores()
@@ -222,7 +229,13 @@ namespace Entidades
             {
                 this.JugarUnaBaza();
                 
-            } while (!this.trucoNoQuerido && this.AlguienGanoLaMano() is null && this.bazasJugadas < 3);
+            } while (!this.tokenCancelacion.IsCancellationRequested && !this.trucoNoQuerido && this.AlguienGanoLaMano() is null && this.bazasJugadas < 3);
+           
+            if(this.tokenCancelacion.IsCancellationRequested)
+            {
+                this.partidaCancelada = true;
+                return;
+            }
 
             this.FinalizarMano();
             if(this.manoTerminada is not null)
@@ -305,7 +318,11 @@ namespace Entidades
 
         private void CompararBaza()
         {
-
+            if(this.tokenCancelacion.IsCancellationRequested)
+            {
+                this.partidaCancelada = true;
+                return;
+            }
             switch (Juego.CompararCartas(this.mesa.cartasTiradasPorJ1[this.bazasJugadas], this.mesa.cartasTiradasPorJ2[this.bazasJugadas]))
             {
                 case 1:
@@ -705,6 +722,12 @@ namespace Entidades
                 this.actualizarLog.Invoke($"\nJ{mano.IdJugador}: {mano.CartasEnMano[0].ToString()} { mano.CartasEnMano[1].ToString()} { mano.CartasEnMano[2].ToString()}");
             }
 
+        }
+
+        public void CancelarPartida(CancellationTokenSource tokenSource)
+        {
+            tokenSource.Cancel();
+            this.TerminarPartida();
         }
 
         private void ActualizarMazo()

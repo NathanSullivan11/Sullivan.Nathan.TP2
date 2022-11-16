@@ -15,6 +15,7 @@ namespace Vista
         private CancellationTokenSource fuenteTokenCancelacion;
         private Task tareaPartida;
         private FrmJugarTurnoUsuario formJugarTurno;
+        public event Action<CancellationTokenSource> cancelarPartida;
 
         public FrmUsuarioVsBot()
         {
@@ -52,6 +53,8 @@ namespace Vista
 
         private void btn_Jugar_Click(object sender, EventArgs e)
         {
+            this.btn_CancelarPartida.Visible = true;
+            this.btn_Jugar.Visible = false;
             partida = this.InstanciarPartida();
             if (partida is null)
             {
@@ -60,6 +63,7 @@ namespace Vista
 
             this.AsignarEventosDePartida();
 
+            
             tareaPartida = new Task(() => partida.ComenzarPartida(tokenCancelacion));
             tareaPartida.Start();
         }
@@ -69,6 +73,7 @@ namespace Vista
         /// </summary>
         private void AsignarEventosDePartida()
         {
+            this.cancelarPartida += partida.CancelarPartida;
             partida.repartirCarta += this.RepartirCarta;
             partida.actualizarPuntaje += this.ActualizarPuntaje;
             partida.pedirJugadaUsuario += TurnoUsuario;
@@ -303,12 +308,18 @@ namespace Vista
                 this.Invoke(delegado, sender, e);
             }
             else
-            {
-                if(formJugarTurno is not null)
+            {   
+                if(!this.tokenCancelacion.IsCancellationRequested)
                 {
-                    formJugarTurno.Close();
+                    MessageBox.Show("Debe cancelar la partida para poder cerrarlo");
+                    e.Cancel = true;
+                    return;
                 }
-                this.fuenteTokenCancelacion.Cancel();
+                if(formJugarTurno.DialogResult != DialogResult.OK)
+                {
+                    formJugarTurno.DialogResult = DialogResult.OK;
+                }
+                this.fuenteTokenCancelacion.Cancel();               
             }
         }
         /// <summary>
@@ -352,6 +363,13 @@ namespace Vista
            {
                 this.Close();
            }          
+        }
+
+        private void btn_CancelarPartida_Click(object sender, EventArgs e)
+        {
+            this.fuenteTokenCancelacion.Cancel();
+            this.cancelarPartida.Invoke(this.fuenteTokenCancelacion);
+            bool o = this.tareaPartida.IsCanceled;
         }
     }
 }
