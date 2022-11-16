@@ -72,7 +72,7 @@ namespace Vista
         {
             if(!string.IsNullOrEmpty(this.txt_NombreIngresado.Text))
             {
-                if(accesoDatosJugadores.Agregar(this.txt_NombreIngresado.Text))
+                if(accesoDatosJugadores.Agregar(this.txt_NombreIngresado.Text,0))
                 {
                     MessageBox.Show("Se agrego correctamente");
                 }

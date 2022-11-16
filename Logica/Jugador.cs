@@ -34,18 +34,18 @@ namespace Entidades
             this.estaJugando = false;
             this.bazasGanadas = 0;
             this.puntaje = 0;
-            this.EsUsuario = false;
         }
 
-        public Jugador(string nombre, int partidasJugadas, int partidasGanadas, int partidasPerdidas) : this()
+        public Jugador(string nombre, int partidasJugadas, int partidasGanadas, int partidasPerdidas, bool esUsuario) : this()
         {
             this.nombre = nombre;
             this.partidasJugadas = partidasJugadas;
             this.partidasGanadas = partidasGanadas;
             this.partidasPerdidas = partidasPerdidas;
+            this.esUsuario = esUsuario;
         }
 
-        public Jugador(int id, string nombre, int partidasJugadas, int partidasGanadas, int partidasPerdidas) : this(nombre, partidasJugadas, partidasGanadas, partidasPerdidas)
+        public Jugador(int id, string nombre, int partidasJugadas, int partidasGanadas, int partidasPerdidas, bool esUsuario) : this(nombre, partidasJugadas, partidasGanadas, partidasPerdidas, esUsuario)
         {
             this.idBaseDeDatos = id;
         }

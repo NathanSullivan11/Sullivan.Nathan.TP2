@@ -18,6 +18,7 @@ namespace Vista
         private FrmMostrarPartidaBotVsBot formMostrarSala;
         private CancellationTokenSource tokenSource;
         private CancellationToken token;
+        public event Action<UC_Mesa,int,int> actualizarPuntaje;
 
         public UC_Mesa()
         {
@@ -26,7 +27,7 @@ namespace Vista
 
         public UC_Mesa(Partida partida) : this()
         {
-            InitializeComponent();
+
 
             this.partida = partida;
             this.SetearDatosDePartida();
@@ -47,11 +48,25 @@ namespace Vista
 
             this.formMostrarSala = new FrmMostrarPartidaBotVsBot(this.partida, tarea);
             this.formMostrarSala.cancelarPartida += this.CancelarPartida;
+            this.partida.actualizarPuntaje += this.ActualizarPuntaje;
             this.partida.partidaTerminada += this.ActualizarMensaje;
             this.partida.actualizarLog += this.formMostrarSala.Actualizar;
             this.partida.partidaTerminada += this.formMostrarSala.MostrarBotonesAlFinalizarPartida;
             
             tarea.Start();
+        }
+
+        private void ActualizarPuntaje(int puntajeJ1, int puntajeJ2)
+        {
+            if(InvokeRequired)
+            {
+                Action<int, int> delegado = ActualizarPuntaje;
+                this.Invoke(delegado, puntajeJ1, puntajeJ2);
+            }
+            else
+            {
+                this.actualizarPuntaje.Invoke(this, puntajeJ1, puntajeJ2);
+            }
         }
 
         private void btn_VerSala_Click(object sender, EventArgs e)
@@ -86,71 +101,12 @@ namespace Vista
                 this.lbl_Puntaje.Location = new Point(20, 16);
             }
         }
-       
-      
+         
         private void GenerarTokenDeCancelacion()
         {
             this.tokenSource = new CancellationTokenSource();
             this.token = this.tokenSource.Token;
         }
 
-        /*
-        public UC_Mesa(Sala sala) :this()
-        {
-            InitializeComponent();
-
-            this.sala = sala;
-            this.SetearDatosDeSala();
-            this.GenerarTokenDeCancelacion();
-            this.IniciarPartida();
         }
-
-        private void SetearDatosDeSala()
-        {
-            this.lbl_Puntaje.Location = new Point(72, 16);
-            this.lbl_Jugador1.Text = this.sala.Jugador1.Nombre;
-            this.lbl_Jugador2.Text = this.sala.Jugador2.Nombre;
-        }
-     
-        private void IniciarSalaDeJuego()
-        {
-            Task tarea = new Task(() => sala.ComenzarSalaMaquinaVSMaquina(token));
-
-            this.formMostrarSala = new FrmMostrarPartidaBotVsBot(this.sala, tarea);
-            this.formMostrarSala.cancelarPartida += this.CancelarPartida;
-            this.sala.actualizarSeguimientoDePartida += this.formMostrarSala.Actualizar;
-            this.sala.salaFinalizada += this.ActualizarPuntaje;
-            this.sala.salaFinalizada += this.formMostrarSala.MostrarBotonesAlFinalizarSala;
-            tarea.Start();
-        }
-
-        private void ActualizarPuntaje(object sender, EventArgs e)
-        {
-            if(InvokeRequired)
-            {
-                this.Invoke((EventHandler)ActualizarPuntaje, sender, e);
-            }
-            else
-            {
-                this.lbl_Puntaje.Text = "Partida terminada";
-                this.lbl_Puntaje.Location = new Point(20, 16);
-            }
-        }
-
-        private void btn_VerSala_Click(object sender, EventArgs e)
-        {
-            this.formMostrarSala.Show();
-        }
-
-        public Sala Sala
-        {
-            get { return this.sala; }
-        }
-
-        public FrmMostrarPartidaBotVsBot FormMostrarSala 
-        {
-            get { return this.formMostrarSala; }
-        }
-        */
-    }
 }

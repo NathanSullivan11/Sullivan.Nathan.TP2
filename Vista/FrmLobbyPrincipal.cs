@@ -55,7 +55,7 @@ namespace Vista
         private void btn_RegistroPartidas_Click(object sender, EventArgs e)
         {
             
-            formRegistro.Show();
+            formRegistro.ShowDialog();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Entidades
 {
     interface ISerializarDeserializar<T> where T : class, new()
     {
-        void Serializar(T datos, string nombreArchivo);
+        bool Serializar(T datos, string nombreArchivo);
 
         T Deserializar(string nombreArchivo);
     }

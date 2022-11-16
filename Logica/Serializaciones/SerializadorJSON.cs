@@ -18,22 +18,56 @@ namespace Entidades
         {
             ruta = Environment.CurrentDirectory;
             //ruta = @"C:\Users\Usuario\source\repos\Sullivan.Nathan.TP2\Vista\bin\Debug\net5.0-windows";
-            ruta += @"/ArchivosJSON";
+            ruta += "\\ArchivosJSON";
         }
         
-        public void Serializar(T datos, string nombreArchivo)
+        public bool Serializar(T datos, string nombreArchivo)
         {
-            string rutaCompleta = ruta + @"/" + nombreArchivo + ".json";
+            bool retorno = false;
+            string rutaCompleta = ruta + "\\" + nombreArchivo + ".json";
             if(!Directory.Exists(ruta))
             {
                 Directory.CreateDirectory(ruta);
             }
-            JsonSerializerOptions opciones = new JsonSerializerOptions()
+            /* JsonSerializerOptions opciones = new JsonSerializerOptions()
+             {
+                 Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)},
+             };*/
+            try
             {
-                Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)},
-            };
-            string json = JsonSerializer.Serialize(datos);
-            File.WriteAllText(rutaCompleta, json);
+                string json = JsonSerializer.Serialize(datos);
+                File.WriteAllText(rutaCompleta, json);
+                retorno = true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"No se ha podido serializar en json datos del tipo {typeof(T).ToString()}");
+            }
+            return retorno;
+        }
+
+        public bool Serializar(T datos, string carpeta, string nombreArchivo)
+        {
+            bool retorno = false;
+            string rutaMasCarpeta = ruta + "\\" + carpeta;
+            string rutaCompleta = rutaMasCarpeta + "\\" + nombreArchivo + ".json";
+            
+            try
+            {
+                if (!Directory.Exists(rutaMasCarpeta))
+                {
+                    Directory.CreateDirectory(rutaMasCarpeta);
+                }
+
+                string json = JsonSerializer.Serialize(datos);
+                File.WriteAllText(rutaCompleta, json);
+                retorno = true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"No se ha podido serializar en json datos del tipo {typeof(T).ToString()}");
+            }
+            return retorno;
         }
 
         public T Deserializar(string nombreArchivo)
@@ -43,7 +77,7 @@ namespace Entidades
             {
                 Directory.CreateDirectory(ruta);
             }
-            string rutaCompleta = ruta + @"/" + nombreArchivo + ".json";
+            string rutaCompleta = ruta + "\\" + nombreArchivo + ".json";
 
             try
             {
@@ -51,9 +85,9 @@ namespace Entidades
                 datos = (T)JsonSerializer.Deserialize(json, typeof(T));
 
             }
-            catch(Exception e)
+            catch(Exception)
             {
-
+                throw new Exception($"No se ha podido deserializar en json los datos de tipo {typeof(T).ToString()}");
             }
 
             return datos;

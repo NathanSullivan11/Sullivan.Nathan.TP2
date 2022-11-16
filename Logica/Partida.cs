@@ -113,6 +113,7 @@ namespace Entidades
         public Jugador Jugador1 { get => jugador1; set => jugador1 = value; }
         public Jugador Jugador2 { get => jugador2; set => jugador2 = value; }
         public bool PartidaFinalizada { get => partidaFinalizada; set => partidaFinalizada = value; }
+        public int ManosJugadas { get => manosJugadas; set => manosJugadas = value; }
 
         public Partida(Jugador jugador1, Jugador jugador2)
         {
@@ -145,14 +146,16 @@ namespace Entidades
             this.ActualizarEstadisticasJugadores();
             if(this.actualizarLog is not null)
             {
-                this.actualizarLog.Invoke($"\nPUNTAJE FINAL: \nJ1: {this.jugador1.Puntaje}\nJ2:{this.jugador2.Puntaje}");
+                this.actualizarLog.Invoke($"\nGANADOR J{this.hayGanador.Puntaje} - {this.hayGanador.Nombre} ");
 
             }
             this.partidaFinalizada = true;
             this.jugador1.EstaJugando = false;
             this.jugador2.EstaJugando = false;
-            new JugadoresADO().Actualizar(jugador1);
-            new JugadoresADO().Actualizar(jugador2);
+            Juego.ActualizarJugadorEnBaseDeDatos(jugador1);
+            Juego.ActualizarJugadorEnBaseDeDatos(jugador2);
+
+
         }
 
         private void ActualizarEstadisticasJugadores()
@@ -211,7 +214,7 @@ namespace Entidades
             this.jugadorActual = mano;
             if (this.actualizarLog is not null)
             {
-                this.actualizarLog.Invoke($"\n====================== Mano {this.manosJugadas + 1} ======================");
+                this.actualizarLog.Invoke($"\n======= Mano {this.manosJugadas + 1} =======");
             }
             this.RepartirCartas(mano, pie);
             

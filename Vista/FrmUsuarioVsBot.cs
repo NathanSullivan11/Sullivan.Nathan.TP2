@@ -10,6 +10,7 @@ namespace Vista
     public partial class FrmUsuarioVsBot : Form
     {
         public Partida partida;
+        private RegistroPartida registroPartida;
         private CancellationToken tokenCancelacion;
         private CancellationTokenSource fuenteTokenCancelacion;
         private Task tareaPartida;
@@ -32,11 +33,20 @@ namespace Vista
 
         private void btn_Jugar_Click(object sender, EventArgs e)
         {
+            this.Size = new System.Drawing.Size(896, 768);
             this.btn_Jugar.Enabled = false;
-            Jugador j1 = new Jugador("Nathan",0,0,0);
-            Jugador j2 = new Jugador("BOT", 0, 0, 0);
+            Jugador j1;
+            j1 = Juego.ObtenerJugadorUsuarioDisponible();
+            if(j1 is null)
+            {   
+                j1 = new Jugador("Nathan",0,0,0,true);
+            }
+            Jugador j2 = Juego.ObtenerJugadorBotDisponible();
+            if(j2 is null)
+            {
+                j2 = new Jugador("Bot", 0, 0, 0, false);
+            }
             j1.IdJugador = 1;
-            j1.EsUsuario = true;
             j1.obtenerRespuestaUsuario += this.respuestaUsuario;
             j2.IdJugador = 2;
             partida = new Partida(j1, j2);
@@ -53,7 +63,6 @@ namespace Vista
 
             tareaPartida = new Task( () => partida.ComenzarPartida(tokenCancelacion));
             tareaPartida.Start();
-
         }
 
         private void ReiniciarParaNuevaPartida()
@@ -66,9 +75,20 @@ namespace Vista
             else
             {
                 this.btn_Jugar.Enabled = true;
-                this.lbl_tituloUsuariovsMaquina.Text = $"Ganador: {this.partida.HayGanador.Nombre}";
+                this.lbl_mensajeAnunciarGanador.Visible = true;
+                this.lbl_mensajeAnunciarGanador.Text = $"Ganador: {this.partida.HayGanador.Nombre}";
                 this.fuenteTokenCancelacion.Cancel();
+                this.OcultarMensajesJugadores();
+                this.MostrarBotonesGuardarRegistro();
+                this.Size = new System.Drawing.Size(290, 537);
             }
+        }
+
+        private void MostrarBotonesGuardarRegistro()
+        {
+            this.btn_SerializarJson.Visible = true;
+            this.btn_SerializarXml.Visible = true;
+            this.btn_CerrarSinGuardar.Visible = true;
         }
 
         private void ImprimirMensaje(string mensaje, bool esUsuario)
@@ -82,11 +102,13 @@ namespace Vista
             {
                 if(esUsuario)
                 {
+                    this.pictureBox_Usuario.Visible = true;
                     this.lbl_MensajeUsuario.Visible = true;
                     this.lbl_MensajeUsuario.Text = mensaje;
                 }
                 else
-                { 
+                {
+                    this.pictureBox_bot.Visible = true;
                     this.lbl_MensajeBot.Visible = true;
                     this.lbl_MensajeBot.Text = mensaje;
                 }
@@ -106,6 +128,7 @@ namespace Vista
                 this.flp_cartasEnMesaJ2.Controls.Clear();
                 this.flp_cartasEnManoJ1.Controls.Clear();
                 this.flp_cartasEnManoJ2.Controls.Clear();
+                this.OcultarMensajesJugadores();
             }
         }
 
@@ -151,6 +174,8 @@ namespace Vista
 
         private void OcultarMensajesJugadores()
         {
+            this.pictureBox_Usuario.Visible = false;
+            this.pictureBox_bot.Visible = false;
             this.lbl_MensajeUsuario.Visible = false;
             this.lbl_MensajeBot.Visible = false;
         }
@@ -251,6 +276,40 @@ namespace Vista
                 }
                 this.fuenteTokenCancelacion.Cancel();
             }
+        }
+
+        private void btn_SerializarJson_Click(object sender, EventArgs e)
+        {
+            this.btn_SerializarJson.Enabled = false;
+
+            string mensaje = Juego.GuardarRegistroPartidaJSON(this.partida, false);
+
+            MessageBox.Show(mensaje);
+            if (mensaje == "Partida serializada en json EXITOSAMENTE")
+            {
+                this.Close();
+            }                                 
+        }
+
+        private void btn_SerializarXml_Click(object sender, EventArgs e)
+        {
+            this.btn_SerializarXml.Enabled = false;
+
+            string mensaje = Juego.GuardarRegistroPartidaXML(this.partida, false);
+  
+            MessageBox.Show(mensaje);
+            if (mensaje == "Partida serializada en xml EXITOSAMENTE")
+            {
+                this.Close();
+            }            
+        }
+
+        private void btn_CerrarSinGuardar_Click(object sender, EventArgs e)
+        {
+           if(MessageBox.Show("¿Estas seguro que desea cerrar sin guardar el registro?", "Salir sin guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+           {
+                this.Close();
+           }          
         }
     }
 }

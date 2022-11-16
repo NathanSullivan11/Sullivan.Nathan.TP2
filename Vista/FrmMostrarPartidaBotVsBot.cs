@@ -97,69 +97,39 @@ namespace Vista
             }
             else
             {
+                this.richTBox_InformacionSalasAbiertas.Size = new Size(303, 325);
                 this.btn_CerrarSala.Visible = true;
                 this.btn_GuardarEnTxt.Visible = true;
                 this.btn_CancelarPartida.Visible = false;
+                this.btn_GuardarEnJson.Visible = true;
+                this.btn_GuardarEnXml.Visible = true;
             }
         }
 
-        /*
-        public FrmMostrarPartidaBotVsBot(Sala miSala, Task tarea) : this()
+        private void btn_GuardarEnJson_Click(object sender, EventArgs e)
         {
-            this.tarea = tarea;
-            this.miSala = miSala;
+            this.btn_GuardarEnJson.Enabled = false;
 
+            string mensaje = Juego.GuardarRegistroPartidaJSON(this.partida,true);
 
-            //tarea = new Task(() => miSala.ComenzarSala());
-            //tarea.Start();
-        }
-       
-
-        
-
-        private void FrmMostrar_Load(object sender, EventArgs e)
-        {
-            this.Text = $"Mesa en juego | {this.miSala.Jugador1.Nombre} vs {this.miSala.Jugador2.Nombre}";
-        }
-
-        private void FrmMostrar_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            this.Hide();
-        }
-
-        private void btn_CerrarSala_Click(object sender, EventArgs e)
-        {
-           this.FormClosing -= this.FrmMostrar_FormClosing;
-            EventHandler delegado = CerrarSalaSinGuardar;
-            this.Invoke(delegado, sender, e);
-        }
-
-        private void CerrarSalaSinGuardar(object sender, EventArgs e)
-        {
-            this.cerrarSinGuardar.Invoke(this.miSala);
-            this.Close();
-        }
-
-        private void btn_GuardarEnTxt_Click(object sender, EventArgs e)
-        {
-            if(ManejadorArchivoTxt.Escribir(this.richTBox_InformacionSalasAbiertas.Text, $"sala_{miSala.Jugador1.Nombre}vs{miSala.Jugador2.Nombre}"))
+            MessageBox.Show(mensaje);
+            if (mensaje == "Partida serializada en json EXITOSAMENTE")
             {
-                MessageBox.Show("Se creo el archivo!");
-                this.FormClosing -= this.FrmMostrar_FormClosing;
-                this.cerrarSinGuardar.Invoke(this.miSala);
                 this.Close();
             }
-            else
-            {
-                MessageBox.Show("No se pudo crear el archivo!");
-            }
         }
 
-        private void btn_CancelarPartida_Click(object sender, EventArgs e)
+        private void btn_GuardarEnXml_Click(object sender, EventArgs e)
         {
-            this.cancelarPartida.Invoke();
-            MessageBox.Show("Se cancelara al terminar la mano en curso...");
-        }*/
+            this.btn_GuardarEnXml.Enabled = false;
+
+            string mensaje = Juego.GuardarRegistroPartidaXML(this.partida, true);
+
+            MessageBox.Show(mensaje);
+            if (mensaje == "Partida serializada en xml EXITOSAMENTE")
+            {
+                this.Close();
+            }
+        }
     }
 }

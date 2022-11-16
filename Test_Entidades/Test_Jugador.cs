@@ -6,26 +6,7 @@ namespace Test_Entidades
 {
     [TestClass]
     public class Test_Jugador
-    {/*
-        [TestMethod]
-        public void Test_RecibirCarta()
-        {
-            // Arrange
-            Jugador j1 = new Jugador();
-            Carta cartaUno = new Carta(5, EPalo.Basto);
-            Carta cartaDos = new Carta(4, EPalo.Basto);
-            Carta cartaTres = new Carta(12, EPalo.Espada);
-
-            List<Carta> cartasEsperadas = new List<Carta>(){ cartaUno, cartaDos, cartaTres };
-       
-            // Act
-            j1.RecibirCarta(cartaUno);
-            j1.RecibirCarta(cartaUno);
-            j1.RecibirCarta(cartaUno);
-            
-            // Assert
-            Assert.AreEqual<List<Carta>>(cartasEsperadas, j1.CartasEnMano);
-        }*/
+    {
 
         [TestMethod]
         public void Test_CalcularEnvido()

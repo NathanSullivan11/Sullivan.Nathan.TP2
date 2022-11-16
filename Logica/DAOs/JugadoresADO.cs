@@ -25,7 +25,8 @@ namespace Entidades
             try
             {                
                 conexion.Open();
-                comando.CommandText = "SELECT id,nombre,partidasJugadas,partidasGanadas,partidasPerdidas " +
+                comando.CommandText = "SELECT * FROM Jugadores";
+                comando.CommandText = "SELECT id,nombre,partidasJugadas,partidasGanadas,partidasPerdidas,esUsuario " +
                     "FROM Jugadores";
                 using (SqlDataReader dataReader = comando.ExecuteReader())
                 {
@@ -36,15 +37,17 @@ namespace Entidades
                         int partidasJugadas = (int)dataReader["partidasJugadas"];
                         int partidasGanadas = (int)dataReader["partidasGanadas"];
                         int partidasPerdidas = (int)dataReader["partidasPerdidas"];
-                        Jugador auxJugador = new Jugador(id,nombre, partidasJugadas, partidasGanadas, partidasPerdidas);
+                        bool esUsuario = (bool)dataReader["esUsuario"];
+
+                        Jugador auxJugador = new Jugador(id,nombre, partidasJugadas, partidasGanadas, partidasPerdidas, esUsuario);
                         listaJugadores.Add(auxJugador);
                     }
                 }
                 retorno = "Conexion a base de datos exitosa";
             }
-            catch(Exception)
+            catch(Exception e)
             {
-                
+                throw new Exception("No se ha podido obtener la lista de jugadores de la base de datos");
             }
             finally
             {
@@ -78,7 +81,7 @@ namespace Entidades
             }
             catch (Exception e)
             {
-
+                throw new Exception("No se ha podido actualizar el jugador en base de datos");
             }
             finally
             {
@@ -105,9 +108,9 @@ namespace Entidades
                }
                 comando.Parameters.Clear();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                throw new Exception("No se ha podido eliminar al jugador de la base de datos");
             }
             finally
             {
@@ -120,24 +123,25 @@ namespace Entidades
 
         }
 
-        public bool Agregar(string nombre)
+        public bool Agregar(string nombre, int esUsuario)
         {
             bool seAgrego = false;
             try
             {
                conexion.Open();
 
-               comando.CommandText = "INSERT INTO Jugadores VALUES (@nombre, 0, 0, 0)";
+               comando.CommandText = "INSERT INTO Jugadores VALUES (@nombre, 0, 0, 0, @esUsuario)";
                comando.Parameters.AddWithValue("@nombre", nombre);
+               comando.Parameters.AddWithValue("@esUsuario", esUsuario);
                if(comando.ExecuteNonQuery() == 1)
                {
                     seAgrego = true;
                }
                comando.Parameters.Clear();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                throw new Exception("No se ha podido agregar al jugador a la base de datos");
             }
             finally
             {

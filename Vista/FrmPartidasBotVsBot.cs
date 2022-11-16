@@ -31,8 +31,8 @@ namespace Vista
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            actualizarListaPartidasEnJuego = new Task(() => ActualizarPartidasEnJuego());
-            actualizarListaPartidasEnJuego.Start();
+            /*actualizarListaPartidasEnJuego = new Task(() => ActualizarPartidasEnJuego());
+            actualizarListaPartidasEnJuego.Start();*/
         }
 
         private void ActualizarPartidasEnJuego()
@@ -46,8 +46,8 @@ namespace Vista
 
         private Partida CrearMesaDeJuego()
         {           
-            Jugador j1 = Juego.ObtenerJugadorDisponible();
-            Jugador j2 = Juego.ObtenerJugadorDisponible();
+            Jugador j1 = Juego.ObtenerJugadorBotDisponible();
+            Jugador j2 = Juego.ObtenerJugadorBotDisponible();
             
             Partida partida = null;
             if (j1 is not null && j2 is not null)
@@ -76,8 +76,9 @@ namespace Vista
             Partida partida = CrearMesaDeJuego();
             if (partida is not null)
             {
-                UC_Mesa mesaPrevisualizacion = new UC_Mesa(partida);
 
+                UC_Mesa mesaPrevisualizacion = new UC_Mesa(partida);
+                mesaPrevisualizacion.actualizarPuntaje += ActualizarPuntajePartida;
                 this.mesas.Add(mesaPrevisualizacion);
                 this.partidasEnJuego.Add(mesaPrevisualizacion.Partida);
                 mesaPrevisualizacion.FormMostrarSala.cerrarPartidaSinGuardar += EliminarPartida;
@@ -110,6 +111,19 @@ namespace Vista
             }           
         }
 
+        private void ActualizarPuntajePartida(UC_Mesa mesa, int puntajeJ1, int puntajeJ2)
+        {
+            if(InvokeRequired)
+            {
+                Action<UC_Mesa,int,int> delegado = ActualizarPuntajePartida;
+                this.Invoke(delegado, mesa,puntajeJ1,puntajeJ2);
+            }
+            else
+            {
+                mesa.lbl_Puntaje.Text = $"{puntajeJ1} : {puntajeJ2}";
+            }
+        }
+
         private void ActualizarPrevisualizacionesPartidas()
         {
            if (InvokeRequired)
@@ -128,20 +142,6 @@ namespace Vista
                 }
             }
         }
-        /*
-        private void lbox_SalasEnJuego_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            foreach(FrmPrevisualizacionMesa item in formsSalas)
-            {
-                if(item.Sala == (Sala)this.lbox_SalasEnJuego.SelectedItem)
-                {                   
-                    if(!item.IsDisposed)
-                    {
-                        item.Show();
-                    }   
-                }
-            }           
-        }*/
 
         private void label2_Click(object sender, EventArgs e)
         {

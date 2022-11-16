@@ -112,145 +112,148 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="carta_trasera_azul" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\carta_trasera_azul.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="versus (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\versus (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="banner_truco" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\banner_truco.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="carta_trasera_roja" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\carta_trasera_roja.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_10debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\10debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_10decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\10decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_10deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\10deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_10deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\10deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_11debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\11debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_11decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\11decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_11deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\11deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_11deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\11deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_12debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\12debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_12decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\12decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_12deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\12deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_12deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\12deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_1debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_1decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_7decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_1deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_1deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_2debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_2decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_2deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_2deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_3debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_3decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_3deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_3deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_4debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_4decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_4deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_4deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="versus (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\versus (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_5debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_5decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_5deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_1debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_5deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\5deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_6debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\6debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_11decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\11decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_6decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\6decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_2deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_6deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\6deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_4debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_10deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_12deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\12deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carta_trasera_azul" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\carta_trasera_azul.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_10deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_6deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\6deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_7debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\7debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_2decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_7decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\7decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="banner_truco" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\banner_truco.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_6debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_12debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\12debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_12deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\12deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_11deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\11deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carta_trasera_roja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\carta_trasera_roja.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_11deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\11deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_5decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_5debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_10decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_6decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_5deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_6deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_7deespada" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\7deespada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_10debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_7deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\7deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_12decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\12decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3decopa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3decopa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3deoro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3deoro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_7debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_11debasto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\11debasto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dialogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dialogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
