@@ -545,7 +545,7 @@ namespace Entidades
             if (this.ObtenerOponente(jugadorQueCanta).ResponderEnvido())
             {      
                 Thread.Sleep(500);
-                this.enviarMensaje.Invoke("Quiero", !jugadorQueCanta.EsUsuario);                         
+                this.enviarMensaje?.Invoke("Quiero", !jugadorQueCanta.EsUsuario);                         
                 this.actualizarLog?.Invoke($"\nJ{this.ObtenerOponente(jugadorQueCanta).IdJugador}: Quiero");              
                 this.CompararEnvido(jugadorQueCanta);
                 return true;                
