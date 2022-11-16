@@ -46,7 +46,7 @@ namespace Vista
             this.dgv_EstadisticasJugadores.Name = "dgv_EstadisticasJugadores";
             this.dgv_EstadisticasJugadores.RowHeadersVisible = false;
             this.dgv_EstadisticasJugadores.RowTemplate.Height = 25;
-            this.dgv_EstadisticasJugadores.Size = new System.Drawing.Size(415, 273);
+            this.dgv_EstadisticasJugadores.Size = new System.Drawing.Size(543, 273);
             this.dgv_EstadisticasJugadores.TabIndex = 0;
             // 
             // btn_AgregarJugador
@@ -55,7 +55,7 @@ namespace Vista
             this.btn_AgregarJugador.FlatAppearance.BorderSize = 0;
             this.btn_AgregarJugador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_AgregarJugador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_AgregarJugador.Location = new System.Drawing.Point(433, 12);
+            this.btn_AgregarJugador.Location = new System.Drawing.Point(570, 12);
             this.btn_AgregarJugador.Name = "btn_AgregarJugador";
             this.btn_AgregarJugador.Size = new System.Drawing.Size(123, 61);
             this.btn_AgregarJugador.TabIndex = 1;
@@ -69,7 +69,7 @@ namespace Vista
             this.btn_EliminarJugador.FlatAppearance.BorderSize = 0;
             this.btn_EliminarJugador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_EliminarJugador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_EliminarJugador.Location = new System.Drawing.Point(433, 224);
+            this.btn_EliminarJugador.Location = new System.Drawing.Point(570, 224);
             this.btn_EliminarJugador.Name = "btn_EliminarJugador";
             this.btn_EliminarJugador.Size = new System.Drawing.Size(123, 61);
             this.btn_EliminarJugador.TabIndex = 1;
@@ -79,7 +79,7 @@ namespace Vista
             // 
             // txt_NombreIngresado
             // 
-            this.txt_NombreIngresado.Location = new System.Drawing.Point(433, 101);
+            this.txt_NombreIngresado.Location = new System.Drawing.Point(570, 101);
             this.txt_NombreIngresado.Name = "txt_NombreIngresado";
             this.txt_NombreIngresado.PlaceholderText = "Ingrese Nombre";
             this.txt_NombreIngresado.Size = new System.Drawing.Size(123, 23);
@@ -88,7 +88,7 @@ namespace Vista
             // 
             // btn_Agregar
             // 
-            this.btn_Agregar.Location = new System.Drawing.Point(465, 150);
+            this.btn_Agregar.Location = new System.Drawing.Point(602, 150);
             this.btn_Agregar.Name = "btn_Agregar";
             this.btn_Agregar.Size = new System.Drawing.Size(59, 23);
             this.btn_Agregar.TabIndex = 3;
@@ -101,7 +101,7 @@ namespace Vista
             // 
             this.chk_esUsuario.AutoSize = true;
             this.chk_esUsuario.ForeColor = System.Drawing.Color.White;
-            this.chk_esUsuario.Location = new System.Drawing.Point(450, 130);
+            this.chk_esUsuario.Location = new System.Drawing.Point(587, 130);
             this.chk_esUsuario.Name = "chk_esUsuario";
             this.chk_esUsuario.Size = new System.Drawing.Size(79, 19);
             this.chk_esUsuario.TabIndex = 4;
@@ -114,7 +114,7 @@ namespace Vista
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(54)))), ((int)(((byte)(1)))));
-            this.ClientSize = new System.Drawing.Size(565, 299);
+            this.ClientSize = new System.Drawing.Size(705, 299);
             this.Controls.Add(this.chk_esUsuario);
             this.Controls.Add(this.btn_Agregar);
             this.Controls.Add(this.txt_NombreIngresado);
@@ -122,9 +122,9 @@ namespace Vista
             this.Controls.Add(this.btn_AgregarJugador);
             this.Controls.Add(this.dgv_EstadisticasJugadores);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(581, 338);
+            this.MaximumSize = new System.Drawing.Size(721, 338);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(581, 338);
+            this.MinimumSize = new System.Drawing.Size(721, 338);
             this.Name = "FrmEstadisticasJugadores";
             this.Text = "Estadísticas de jugadores";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEstadisticasJugadores_FormClosing);

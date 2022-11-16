@@ -41,12 +41,12 @@ namespace Vista
             // 
             this.dtg_RegistroPartidas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(54)))), ((int)(((byte)(1)))));
             this.dtg_RegistroPartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_RegistroPartidas.Location = new System.Drawing.Point(12, 64);
+            this.dtg_RegistroPartidas.Location = new System.Drawing.Point(27, 67);
             this.dtg_RegistroPartidas.Name = "dtg_RegistroPartidas";
             this.dtg_RegistroPartidas.RowHeadersVisible = false;
             this.dtg_RegistroPartidas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dtg_RegistroPartidas.RowTemplate.Height = 25;
-            this.dtg_RegistroPartidas.Size = new System.Drawing.Size(721, 212);
+            this.dtg_RegistroPartidas.Size = new System.Drawing.Size(685, 212);
             this.dtg_RegistroPartidas.TabIndex = 0;
             // 
             // btn_EstadisticasPartidasBotBot
@@ -54,11 +54,11 @@ namespace Vista
             this.btn_EstadisticasPartidasBotBot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(149)))), ((int)(((byte)(68)))));
             this.btn_EstadisticasPartidasBotBot.FlatAppearance.BorderSize = 0;
             this.btn_EstadisticasPartidasBotBot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_EstadisticasPartidasBotBot.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_EstadisticasPartidasBotBot.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_EstadisticasPartidasBotBot.ForeColor = System.Drawing.Color.White;
             this.btn_EstadisticasPartidasBotBot.Location = new System.Drawing.Point(225, 12);
             this.btn_EstadisticasPartidasBotBot.Name = "btn_EstadisticasPartidasBotBot";
-            this.btn_EstadisticasPartidasBotBot.Size = new System.Drawing.Size(239, 40);
+            this.btn_EstadisticasPartidasBotBot.Size = new System.Drawing.Size(231, 40);
             this.btn_EstadisticasPartidasBotBot.TabIndex = 1;
             this.btn_EstadisticasPartidasBotBot.Text = "Mostrar partidas: Bot vs Bot";
             this.btn_EstadisticasPartidasBotBot.UseVisualStyleBackColor = false;
@@ -69,11 +69,11 @@ namespace Vista
             this.btn_EstadisticasPartidasUsuarioBot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(149)))), ((int)(((byte)(68)))));
             this.btn_EstadisticasPartidasUsuarioBot.FlatAppearance.BorderSize = 0;
             this.btn_EstadisticasPartidasUsuarioBot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_EstadisticasPartidasUsuarioBot.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_EstadisticasPartidasUsuarioBot.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_EstadisticasPartidasUsuarioBot.ForeColor = System.Drawing.Color.White;
-            this.btn_EstadisticasPartidasUsuarioBot.Location = new System.Drawing.Point(494, 12);
+            this.btn_EstadisticasPartidasUsuarioBot.Location = new System.Drawing.Point(480, 12);
             this.btn_EstadisticasPartidasUsuarioBot.Name = "btn_EstadisticasPartidasUsuarioBot";
-            this.btn_EstadisticasPartidasUsuarioBot.Size = new System.Drawing.Size(239, 40);
+            this.btn_EstadisticasPartidasUsuarioBot.Size = new System.Drawing.Size(232, 40);
             this.btn_EstadisticasPartidasUsuarioBot.TabIndex = 1;
             this.btn_EstadisticasPartidasUsuarioBot.Text = "Mostrar partidas: User vs Bot";
             this.btn_EstadisticasPartidasUsuarioBot.UseVisualStyleBackColor = false;

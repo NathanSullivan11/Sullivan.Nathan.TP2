@@ -177,7 +177,7 @@ namespace Vista
             this.lbl_MensajeBot.BackColor = System.Drawing.Color.White;
             this.lbl_MensajeBot.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_MensajeBot.ForeColor = System.Drawing.Color.Black;
-            this.lbl_MensajeBot.Location = new System.Drawing.Point(696, 139);
+            this.lbl_MensajeBot.Location = new System.Drawing.Point(709, 139);
             this.lbl_MensajeBot.Name = "lbl_MensajeBot";
             this.lbl_MensajeBot.Size = new System.Drawing.Size(123, 25);
             this.lbl_MensajeBot.TabIndex = 9;
@@ -218,7 +218,7 @@ namespace Vista
             this.lbl_MensajeUsuario.BackColor = System.Drawing.Color.White;
             this.lbl_MensajeUsuario.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_MensajeUsuario.ForeColor = System.Drawing.Color.Black;
-            this.lbl_MensajeUsuario.Location = new System.Drawing.Point(680, 478);
+            this.lbl_MensajeUsuario.Location = new System.Drawing.Point(696, 478);
             this.lbl_MensajeUsuario.Name = "lbl_MensajeUsuario";
             this.lbl_MensajeUsuario.Size = new System.Drawing.Size(154, 25);
             this.lbl_MensajeUsuario.TabIndex = 9;

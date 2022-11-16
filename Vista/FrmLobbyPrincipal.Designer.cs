@@ -51,7 +51,7 @@ namespace Vista
             this.panel_Header.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Header.Location = new System.Drawing.Point(0, 0);
             this.panel_Header.Name = "panel_Header";
-            this.panel_Header.Size = new System.Drawing.Size(1101, 160);
+            this.panel_Header.Size = new System.Drawing.Size(1101, 184);
             this.panel_Header.TabIndex = 0;
             // 
             // lbl_Titulo
@@ -60,7 +60,7 @@ namespace Vista
             this.lbl_Titulo.AutoSize = true;
             this.lbl_Titulo.Font = new System.Drawing.Font("Stencil", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_Titulo.ForeColor = System.Drawing.Color.White;
-            this.lbl_Titulo.Location = new System.Drawing.Point(534, 48);
+            this.lbl_Titulo.Location = new System.Drawing.Point(534, 60);
             this.lbl_Titulo.Name = "lbl_Titulo";
             this.lbl_Titulo.Size = new System.Drawing.Size(454, 57);
             this.lbl_Titulo.TabIndex = 1;
@@ -72,17 +72,17 @@ namespace Vista
             this.pbox_Banner.Image = global::Vista.Properties.Resources.banner_truco;
             this.pbox_Banner.Location = new System.Drawing.Point(0, 0);
             this.pbox_Banner.Name = "pbox_Banner";
-            this.pbox_Banner.Size = new System.Drawing.Size(450, 160);
+            this.pbox_Banner.Size = new System.Drawing.Size(450, 184);
             this.pbox_Banner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbox_Banner.TabIndex = 0;
             this.pbox_Banner.TabStop = false;
             // 
             // panel_MesasIA
             // 
-            this.panel_MesasIA.Location = new System.Drawing.Point(19, 190);
+            this.panel_MesasIA.Location = new System.Drawing.Point(0, 183);
             this.panel_MesasIA.Margin = new System.Windows.Forms.Padding(20);
             this.panel_MesasIA.Name = "panel_MesasIA";
-            this.panel_MesasIA.Size = new System.Drawing.Size(773, 390);
+            this.panel_MesasIA.Size = new System.Drawing.Size(790, 418);
             this.panel_MesasIA.TabIndex = 1;
             // 
             // panel_UsuarioVsMaquina
@@ -90,7 +90,7 @@ namespace Vista
             this.panel_UsuarioVsMaquina.Controls.Add(this.btn_RegistroPartidas);
             this.panel_UsuarioVsMaquina.Controls.Add(this.btn_EstadisticasJugadores);
             this.panel_UsuarioVsMaquina.Controls.Add(this.btn_JugarContraBot);
-            this.panel_UsuarioVsMaquina.Location = new System.Drawing.Point(825, 190);
+            this.panel_UsuarioVsMaquina.Location = new System.Drawing.Point(825, 200);
             this.panel_UsuarioVsMaquina.Name = "panel_UsuarioVsMaquina";
             this.panel_UsuarioVsMaquina.Size = new System.Drawing.Size(252, 390);
             this.panel_UsuarioVsMaquina.TabIndex = 2;

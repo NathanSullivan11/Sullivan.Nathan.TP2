@@ -78,6 +78,7 @@ namespace Vista
                 if(accesoDatosJugadores.Agregar(this.txt_NombreIngresado.Text,this.chk_esUsuario.Checked))
                 {
                     MessageBox.Show("Se agrego correctamente");
+                    this.ActualizarTablaDeDatos();
                 }
                 this.btn_Agregar.Visible = false;
                 this.txt_NombreIngresado.Visible = false;

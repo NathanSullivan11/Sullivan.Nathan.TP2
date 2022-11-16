@@ -65,47 +65,8 @@ namespace Entidades
             }
         }
         
-        public Jugador ObtenerQuienGanoPrimera()
-        {
-            int resultado = Juego.CompararCartas(this.mesa.cartasTiradasPorJ1[0], this.mesa.cartasTiradasPorJ2[0]);
-            if (resultado == 1)
-            {
-                return this.jugador1;
-            } 
-            else if(resultado == -1)
-            {
-                return this.jugador2;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Jugador ObtenerOponente(Jugador jugador)
-        {           
-            if (this.jugador1.Equals(jugador))
-            {
-                return this.jugador2;
-            }
-            else
-            {
-                return this.jugador1;
-            }           
-        }
-
-        public Jugador ObtenerUsuario()
-        {
-            if(this.jugador1.EsUsuario)
-            {
-                return this.jugador1;
-            }
-            else
-            {
-                return this.jugador2;
-            }
-        }
-
+       
+        #region Propiedades
         public bool SeJugoTruco { get => seJugoTruco; set => seJugoTruco = value; }
         public bool SeJugoEnvido { get => seJugoEnvido; set => seJugoEnvido = value; }
         public Jugador HayGanador { get => hayGanador; set => hayGanador = value; }
@@ -113,6 +74,7 @@ namespace Entidades
         public Jugador Jugador2 { get => jugador2; set => jugador2 = value; }
         public bool PartidaFinalizada { get => partidaFinalizada; set => partidaFinalizada = value; }
         public int ManosJugadas { get => manosJugadas; set => manosJugadas = value; }
+        #endregion
 
         public Partida(Jugador jugador1, Jugador jugador2)
         {
@@ -143,26 +105,23 @@ namespace Entidades
 
             this.TerminarPartida();
         }
-
+        /// <summary>
+        /// Invoca los métodos/Eventos para informar que se terminó la partida
+        /// </summary>
         private void TerminarPartida()
         {
             this.ActualizarEstadisticasJugadores();
-            if(this.actualizarLog is not null)
-            {
-                
-                this.actualizarLog.Invoke($"\nGANÓ EL J{this.hayGanador.IdJugador}, {this.hayGanador.Nombre} ");
+ 
+            this.actualizarLog?.Invoke($"\nGANÓ EL J{this.hayGanador.IdJugador}, {this.hayGanador.Nombre} ");
 
-            }
-            this.partidaFinalizada = true;
-            this.jugador1.EstaJugando = false;
-            this.jugador2.EstaJugando = false;
-            Juego.ActualizarJugadorEnBaseDeDatos(jugador1);
-            Juego.ActualizarJugadorEnBaseDeDatos(jugador2);
+            this.partidaFinalizada = true;                     
             this.partidaTerminada.Invoke();
         }
 
         private void ActualizarEstadisticasJugadores()
         {
+            this.jugador1.EstaJugando = false;
+            this.jugador2.EstaJugando = false;
             this.jugador1.PartidasJugadas++;
             this.jugador2.PartidasJugadas++;
 
@@ -183,6 +142,9 @@ namespace Entidades
             }
             this.hayGanador.PartidasGanadas++;
             this.ObtenerOponente(this.hayGanador).PartidasPerdidas++;
+            Juego.ActualizarJugadorEnBaseDeDatos(jugador1);
+            Juego.ActualizarJugadorEnBaseDeDatos(jugador2);
+
         }
 
         private void LimpiarMesa()
@@ -215,10 +177,9 @@ namespace Entidades
         {
             this.ReiniciarParaNuevaMano();
             this.jugadorActual = mano;
-            if (this.actualizarLog is not null)
-            {
-                this.actualizarLog.Invoke($"\n======= Mano {this.manosJugadas + 1} =======");
-            }
+           
+           this.actualizarLog?.Invoke($"\n======= Mano {this.manosJugadas + 1} =======");
+            
             this.RepartirCartas(mano, pie);
             
             do
@@ -240,19 +201,19 @@ namespace Entidades
             
 
         }
-
+        /// <summary>
+        /// Suma los puntos de la mano, y cambia el jugador mano y el jugador pie
+        /// </summary>
         private void FinalizarMano()
         {
             this.SumarPuntos(this.ganadorMano, puntosDelTruco);
-
-            if (this.actualizarLog is not null)
-            {
-                this.actualizarLog.Invoke($"\nJ1: {this.jugador1.Puntaje}\nJ2:{this.jugador2.Puntaje}");         
-            }
+            this.actualizarLog?.Invoke($"\nJ1: {this.jugador1.Puntaje}\nJ2:{this.jugador2.Puntaje}");                    
             this.manosJugadas++;
             this.CambiarMano();
         }
-
+        /// <summary>
+        /// Reinicia los atributos necesarios para poder jugar una nueva mano
+        /// </summary>
         private void ReiniciarParaNuevaMano()
         {
             this.bazasJugadas = 0;
@@ -267,7 +228,10 @@ namespace Entidades
             this.LimpiarMesa();
         }
 
-
+        /// <summary>
+        /// Verifica si alguien gano la mano, evaluando todas las combinaciones. por ej; si pardo 1ra y gano 2da, si se pardaron las 3, etc.
+        /// </summary>
+        /// <returns></returns>
         public Jugador AlguienGanoLaMano()
         {          
             if (this.jugador1.BazasGanadas == 2 || this.bazasPardadas == 2 && this.jugador1.BazasGanadas == 1 || this.bazasPardadas == 1 && this.bazasJugadas == 2 && this.jugador1.BazasGanadas == 1)
@@ -294,7 +258,9 @@ namespace Entidades
             return null;
         }
 
-
+        /// <summary>
+        /// Juega una buza, un turno cada jugador y luego compara
+        /// </summary>
         private void JugarUnaBaza()
         {
             if(!this.JugarTurno(this.jugadorActual))
@@ -310,7 +276,9 @@ namespace Entidades
             this.bazasJugadas++;
 
         }
-
+        /// <summary>
+        /// Compara a ver quien gano, perdio o si se pardo la baza
+        /// </summary>
         private void CompararBaza()
         {
             if(this.partidaCancelada)
@@ -352,7 +320,11 @@ namespace Entidades
                     break;
             }
         }
-
+        /// <summary>
+        /// Juega un turno, si es usuario va a ejecutar otro código 
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <returns></returns>
         private bool JugarTurno(Jugador jugador)
         {
             if (jugador.EsUsuario)
@@ -372,27 +344,33 @@ namespace Entidades
             this.jugadorActual = this.ObtenerOponente(jugadorActual);
             return true;
         }
-
+        /// <summary>
+        /// Le suma los puntos al jugador, y luego verifica si llegó al puntaje necesario para ganar la partida
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <param name="puntos"></param>
+        /// <returns></returns>
         private bool SumarPuntos(Jugador jugador, int puntos)
         {
             jugador.Puntaje += puntos;
             if(jugador.Puntaje >= this.puntajeParaGanar)
             {
                 this.hayGanador = jugador;
-                if (this.actualizarPuntaje is not null)
-                {
-                    this.actualizarPuntaje.Invoke(this.jugador1.Puntaje, this.jugador2.Puntaje);
-                }
+
+                this.actualizarPuntaje?.Invoke(this.jugador1.Puntaje, this.jugador2.Puntaje);
+                
                 return true;
             }
-            if(this.actualizarPuntaje is not null)
-            {
-                this.actualizarPuntaje.Invoke(this.jugador1.Puntaje, this.jugador2.Puntaje);
-            }
+
+            this.actualizarPuntaje?.Invoke(this.jugador1.Puntaje, this.jugador2.Puntaje);
+            
             return false;
         }
 
-
+        /// <summary>
+        /// La maquina juega un turno, si no se canto envido va evaluar si le conviene cantarlo, y lo mismo con truco
+        /// </summary>
+        /// <param name="jugador"></param>
         private void JugarTurnoMaquina(Jugador jugador)
         {
             Thread.Sleep(500);
@@ -412,15 +390,15 @@ namespace Entidades
             }
 
             this.EvaluarCartaATirar(jugador);
-
             Carta cartaTirada = jugador.DelegadoTiradoCarta.Invoke();
+            Thread.Sleep(200);
+            this.actualizarLog?.Invoke($"\nJ{jugador.IdJugador}: {cartaTirada.ToString()}");
+            this.AgregarCartaTiradaAMesaDeJuego(jugador, cartaTirada);
+        }
 
-            if (this.actualizarLog is not null)
-            {
-                Thread.Sleep(200);
-                this.actualizarLog.Invoke($"\nJ{jugador.IdJugador}: {cartaTirada.ToString()}");
-            }
-            if(jugador.IdJugador == jugador1.IdJugador )
+        private void AgregarCartaTiradaAMesaDeJuego(Jugador jugador, Carta cartaTirada)
+        {
+            if (jugador.IdJugador == jugador1.IdJugador)
             {
                 this.mesa.cartasTiradasPorJ1.Add(cartaTirada);
             }
@@ -428,7 +406,7 @@ namespace Entidades
             {
                 this.mesa.cartasTiradasPorJ2.Add(cartaTirada);
             }
-            if(this.enviarCarta is not null)
+            if (this.enviarCarta is not null)
             {
                 this.enviarCarta(cartaTirada, false);
             }
@@ -450,7 +428,10 @@ namespace Entidades
                  this.JugarEnvido(maquina);                   
             }
         }
-
+        /// <summary>
+        /// La maquina evalua que carta le conviene tirar, dependiendo de las manos ganadas, jugadas o pardadas
+        /// </summary>
+        /// <param name="jugador"></param>
         private void EvaluarCartaATirar(Jugador jugador)
         {
             if (this.bazasJugadas == 1 && jugador.BazasGanadas == 0 || this.bazasPardadas == 1 && jugador.BazasGanadas == 1)
@@ -467,6 +448,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Juega turno el usuario, y le pide a la vista la jugada que haya hecho el usuario
+        /// </summary>
+        /// <param name="jugador"></param>
         private void JugarTurnoUsuario(Jugador jugador)
         {
             if(this.pedirJugadaUsuario is not null)
@@ -499,12 +484,8 @@ namespace Entidades
                         {
                             if(item.ToString() == jugada)
                             {
-                                if (this.actualizarLog is not null)
-                                {
-                                Thread.Sleep(200);
-                                this.actualizarLog.Invoke($"\nJ{jugador.IdJugador}: {item.ToString()}");
 
-                                }
+                                Thread.Sleep(200);
                                 jugador.TirarCarta(item);
                                 this.mesa.cartasTiradasPorJ1.Add(item);
                                 if (this.enviarCarta is not null)
@@ -518,177 +499,106 @@ namespace Entidades
                 }
             }           
         }
-
+        /// <summary>
+        /// EL jugador canta truco y espera la respuesta del oponente 
+        /// </summary>
+        /// <param name="jugadorQueCanta"></param>
+        /// <returns></returns>
         private bool JugarTruco(Jugador jugadorQueCanta)
         {
             this.seJugoTruco = true;
-            if (this.enviarMensaje is not null)
-            {
-                this.enviarMensaje.Invoke("TRUCO", jugadorQueCanta.EsUsuario);               
-            }
-            if (this.actualizarLog is not null)
-            {
+
+            this.enviarMensaje?.Invoke("TRUCO", jugadorQueCanta.EsUsuario);               
             Thread.Sleep(200);
-            this.actualizarLog.Invoke($"\nJ{jugadorQueCanta.IdJugador}: TRUCO");
+            this.actualizarLog?.Invoke($"\nJ{jugadorQueCanta.IdJugador}: TRUCO");
 
-
-            }
             if (!ObtenerOponente(jugadorQueCanta).ResponderTruco())
             {
-                if (this.enviarMensaje is not null)
-                {
-                    Thread.Sleep(500);
-                    this.enviarMensaje.Invoke("No quiero", false);
-                    Thread.Sleep(500);
-                }
-                if (this.actualizarLog is not null)
-                {
-                Thread.Sleep(200);
-                this.actualizarLog.Invoke($"\nJ{ObtenerOponente(jugadorQueCanta).IdJugador}: No quiero");
-
-
-                }
+                Thread.Sleep(500);
+                this.enviarMensaje?.Invoke("No quiero", false);
+                this.actualizarLog?.Invoke($"\nJ{ObtenerOponente(jugadorQueCanta).IdJugador}: No quiero");
                 this.ganadorMano = jugadorQueCanta;
                 this.trucoNoQuerido = true;
                 return false;
             }
             else
             {
-                if (this.enviarMensaje is not null)
-                {
-                    Thread.Sleep(500);
-                    this.enviarMensaje.Invoke("Quiero", false);
-                }
-                if (this.actualizarLog is not null)
-                {
-
-                Thread.Sleep(200);
-                this.actualizarLog.Invoke($"\nJ{ObtenerOponente(jugadorQueCanta).IdJugador}: Quiero");
-                }
+                Thread.Sleep(500);
+                this.enviarMensaje?.Invoke("Quiero", false);
+                this.actualizarLog?.Invoke($"\nJ{ObtenerOponente(jugadorQueCanta).IdJugador}: Quiero");               
                 this.puntosDelTruco = 2;
                 return true;
             }
         }
-
-        private bool JugarEnvido(Jugador jugador)
+        /// <summary>
+        /// EL jugador canta envido y espera la respuesta del oponente 
+        /// </summary>
+        /// <param name="jugadorQueCanta"></param>
+        /// <returns></returns>
+        private bool JugarEnvido(Jugador jugadorQueCanta)
         {
             this.seJugoEnvido = true;
-            if (this.enviarMensaje is not null)
-            {
-                this.enviarMensaje.Invoke("ENVIDO", jugador.EsUsuario);
-            }
-            if (this.actualizarLog is not null)
-            {
-                Thread.Sleep(200);
-                this.actualizarLog.Invoke($"\nJ{jugador.IdJugador}: ENVIDO");
-            }
-            if (this.ObtenerOponente(jugador).ResponderEnvido())
-            {
-                if (this.enviarMensaje is not null)
-                {
-                    Thread.Sleep(500);
-                    this.enviarMensaje.Invoke("Quiero", !jugador.EsUsuario);                
-                    Thread.Sleep(500);
-                }
-                if (this.actualizarLog is not null)
-                {
-                    Thread.Sleep(200);
-                    this.actualizarLog.Invoke($"\nJ{this.ObtenerOponente(jugador).IdJugador}: Quiero");
-                }
-                this.CompararEnvido(jugador);
+            this.enviarMensaje?.Invoke("ENVIDO", jugadorQueCanta.EsUsuario); 
+            Thread.Sleep(200);
+            this.actualizarLog?.Invoke($"\nJ{jugadorQueCanta.IdJugador}: ENVIDO");
+            
+            if (this.ObtenerOponente(jugadorQueCanta).ResponderEnvido())
+            {      
+                Thread.Sleep(500);
+                this.enviarMensaje.Invoke("Quiero", !jugadorQueCanta.EsUsuario);                         
+                this.actualizarLog?.Invoke($"\nJ{this.ObtenerOponente(jugadorQueCanta).IdJugador}: Quiero");              
+                this.CompararEnvido(jugadorQueCanta);
                 return true;                
             }
             else
             {
-                if(this.enviarMensaje is not null)
-                {
-                    Thread.Sleep(500);
-                    this.enviarMensaje.Invoke("No quiero", !jugador.EsUsuario);
-                    Thread.Sleep(1000);
-                }
-                if (this.actualizarLog is not null)
-                {
-                    Thread.Sleep(200);
-                    this.actualizarLog.Invoke($"\nJ{this.ObtenerOponente(jugador).IdJugador}: No quiero");
-                }
-                this.SumarPuntos(jugador, 1);
+                Thread.Sleep(500);
+                this.enviarMensaje?.Invoke("No quiero", !jugadorQueCanta.EsUsuario);
+                this.actualizarLog?.Invoke($"\nJ{this.ObtenerOponente(jugadorQueCanta).IdJugador}: No quiero");
+                this.SumarPuntos(jugadorQueCanta, 1);
                 return false;                
             }
         }
-
+        /// <summary>
+        /// Compara los envidos 
+        /// </summary>
+        /// <param name="jugadorQueCanto"></param>
         private void CompararEnvido(Jugador jugadorQueCanto)
         {
             Jugador jugadorQueResponde = this.ObtenerOponente(jugadorQueCanto);
             int envidoDelQueCanto = jugadorQueCanto.CalcularEnvido();
             int envidoDelQueRespondio = jugadorQueResponde.CalcularEnvido();
             
-            if (this.enviarMensaje is not null)
-            {
-                Thread.Sleep(500);
-                this.enviarMensaje.Invoke($"Tengo {envidoDelQueCanto}", jugadorQueCanto.EsUsuario);
-            }
-            if (this.actualizarLog is not null)
-            {
-
-            Thread.Sleep(200);
-            this.actualizarLog.Invoke($"\nJ{jugadorQueCanto.IdJugador}: {envidoDelQueCanto}");
-            }
+            Thread.Sleep(500);
+            this.enviarMensaje?.Invoke($"Tengo {envidoDelQueCanto}", jugadorQueCanto.EsUsuario);
+            this.actualizarLog?.Invoke($"\nJ{jugadorQueCanto.IdJugador}: {envidoDelQueCanto}");
+            
 
             switch (Juego.CompararEnvido(envidoDelQueCanto, envidoDelQueRespondio))
             {
                 case 1:
-                    if (this.enviarMensaje is not null)
-                    {
-                        Thread.Sleep(500);
-                        this.enviarMensaje.Invoke($"Son buenas", jugadorQueResponde.EsUsuario);
-                        Thread.Sleep(500);
-                    }
-                    if (this.actualizarLog is not null)
-                    {
-
-                    Thread.Sleep(200);
-                    this.actualizarLog.Invoke($"\nJ{jugadorQueCanto.IdJugador}: Son buenas");
-                    }
-
+                    Thread.Sleep(500);
+                    this.enviarMensaje?.Invoke($"Son buenas", jugadorQueResponde.EsUsuario);
+                    this.actualizarLog?.Invoke($"\nJ{jugadorQueCanto.IdJugador}: Son buenas");
                     this.SumarPuntos(jugadorQueCanto, 2);
                     break;
                 case -1:
-                    if (this.enviarMensaje is not null)
-                    {
-                        Thread.Sleep(500);
-                        this.enviarMensaje.Invoke($"{envidoDelQueRespondio} son mejores", jugadorQueResponde.EsUsuario);
-                        Thread.Sleep(500);
-                    }
-                    if (this.actualizarLog is not null)
-                    {
-
-                    Thread.Sleep(200);
-                    this.actualizarLog.Invoke($"\nJ{jugadorQueResponde.IdJugador}: {envidoDelQueRespondio} son mejores");
-                    }
+                    Thread.Sleep(500);
+                    this.enviarMensaje?.Invoke($"{envidoDelQueRespondio} son mejores", jugadorQueResponde.EsUsuario);
+                    this.actualizarLog?.Invoke($"\nJ{jugadorQueResponde.IdJugador}: {envidoDelQueRespondio} son mejores");                  
                     this.SumarPuntos(this.ObtenerOponente(jugadorQueCanto), 2);
                     break;
                 case 0:
-                    if (this.enviarMensaje is not null)
-                    {
-                        this.enviarMensaje.Invoke($"{envidoDelQueRespondio}", jugadorQueResponde.EsUsuario);
-                        Thread.Sleep(500);
-                        this.enviarMensaje.Invoke($"Ganó yo porque soy mano", this.JugadorMano.EsUsuario);
-                        Thread.Sleep(500);
-                    }
-                    if (this.actualizarLog is not null)
-                    {
-
-                    Thread.Sleep(200);
-                    this.actualizarLog.Invoke($"J{jugadorQueResponde.IdJugador}: {envidoDelQueRespondio}");
-                    Thread.Sleep(200);
-                    this.actualizarLog.Invoke($"\nGana {this.JugadorMano.IdJugador} porque es mano");
-                    }
+                    Thread.Sleep(500);
+                    this.actualizarLog?.Invoke($"J{jugadorQueResponde.IdJugador}: {envidoDelQueRespondio}");
+                    this.enviarMensaje?.Invoke($"{envidoDelQueRespondio}", jugadorQueResponde.EsUsuario);
+                    Thread.Sleep(500);
+                    this.actualizarLog?.Invoke($"\nGana {this.JugadorMano.IdJugador} porque es mano");
+                    this.enviarMensaje?.Invoke($"Ganó yo porque soy mano", this.JugadorMano.EsUsuario);
                     this.SumarPuntos(JugadorMano, 2);
                     break;
             }
         }
-
-
 
         public void RepartirCartas(Jugador mano, Jugador pie)
         {
@@ -712,13 +622,50 @@ namespace Entidades
                 {
                     this.repartirCarta.Invoke(cartaRecibidaPorpie, pie.EsUsuario);
                 }
-            }
-            if(this.actualizarLog is not null)
-            {
-                this.actualizarLog.Invoke($"\nJ{pie.IdJugador}: {pie.CartasEnMano[0].ToString()} { pie.CartasEnMano[1].ToString()} { pie.CartasEnMano[2].ToString()}");
-                this.actualizarLog.Invoke($"\nJ{mano.IdJugador}: {mano.CartasEnMano[0].ToString()} { mano.CartasEnMano[1].ToString()} { mano.CartasEnMano[2].ToString()}");
-            }
+            }           
+            this.actualizarLog?.Invoke($"\nJ{pie.IdJugador}: {pie.CartasEnMano[0].ToString()} { pie.CartasEnMano[1].ToString()} { pie.CartasEnMano[2].ToString()}");
+            this.actualizarLog?.Invoke($"\nJ{mano.IdJugador}: {mano.CartasEnMano[0].ToString()} { mano.CartasEnMano[1].ToString()} { mano.CartasEnMano[2].ToString()}");         
+        }
 
+        public Jugador ObtenerQuienGanoPrimera()
+        {
+            int resultado = Juego.CompararCartas(this.mesa.cartasTiradasPorJ1[0], this.mesa.cartasTiradasPorJ2[0]);
+            if (resultado == 1)
+            {
+                return this.jugador1;
+            }
+            else if (resultado == -1)
+            {
+                return this.jugador2;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Jugador ObtenerOponente(Jugador jugador)
+        {
+            if (this.jugador1.Equals(jugador))
+            {
+                return this.jugador2;
+            }
+            else
+            {
+                return this.jugador1;
+            }
+        }
+
+        public Jugador ObtenerUsuario()
+        {
+            if (this.jugador1.EsUsuario)
+            {
+                return this.jugador1;
+            }
+            else
+            {
+                return this.jugador2;
+            }
         }
 
         public void CancelarPartida(CancellationTokenSource tokenSource)
