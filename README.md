@@ -20,8 +20,52 @@ La aplicación consiste en un simulador del juego de cartas 'Truco', podremos ta
 ![Captura de pantalla (20)](https://user-images.githubusercontent.com/97369033/202081677-c0dde6e9-9260-447d-a17b-eaf6178ba37a.png)     
 ![Captura de pantalla (21)](https://user-images.githubusercontent.com/97369033/202081728-5c0cf389-9fae-49e9-9396-dbf9b204ed44.png)
 
-## Justificación técnica
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## ¿Cómo usar la aplicación?
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Lobby principal
+![image](https://user-images.githubusercontent.com/97369033/202146809-0ad2629b-85b3-4aa4-98ed-2cd163f1bd5c.png)
+
+Tiene un sector donde se van a jugar todas las partidas simuladas, es decir, bot vs bot. Los puntaje de cada partida se actualizan en tiempo real.<br/>
+![image](https://user-images.githubusercontent.com/97369033/202146994-f1d6da16-97ed-4b96-be75-8a0abc7a9808.png)
+
+Si le damos al botón ver nos llevará a otro formulario donde podremos seguir el rastro de la partida, y tambíen pudiendo cancelar la misma.<br/>
+![image](https://user-images.githubusercontent.com/97369033/202147451-84069dfe-0f3f-4a5b-be9c-67fe5cd7cf5f.png)
+
+Al terminar o cancelar la partida, se habilitarán los botones para guardar el registro, contaremos con 3 opciones de guardado: en TXT, en JSON o en XML. Tambíen podremos cerrar la partida sin guardar.<br/>
+![image](https://user-images.githubusercontent.com/97369033/202147461-218ba361-7520-4c15-9671-1f003ca6d483.png)
+
+
+Luego, en el otro sector del lobby tendremos 3 botones<br/>
+![image](https://user-images.githubusercontent.com/97369033/202147630-776e76e3-0d74-4f8b-95df-08a4ad178195.png)
+
+###'Jugar contra un bot'
+
+Este nos llevará a otro formulario donde podremos comenzar la partida para jugar contra un bot.<br/>
+![image](https://user-images.githubusercontent.com/97369033/202147824-30a60798-2aaa-46af-8327-c7231be3a07b.png)
+
+Al darle a comenzar, automaticamente se empezerán a repartir las cartas y a jugar la partida. Podremos cancelarla en todo momento.<br/>
+![image](https://user-images.githubusercontent.com/97369033/202147913-b3534229-f5e3-4d1b-a2c7-11dbeeb181c4.png)
+
+Al terminar o cancelar la partida, se habilitarán los botones para guardar el registro, contaremos con 2opciones de guardado: en JSON o en XML. Tambíen podremos cerrar la partida sin guardar.<br/>
+![image](https://user-images.githubusercontent.com/97369033/202148286-db43a7ce-100f-4fde-ab84-9117679f7bdf.png)
+
+### 'Estadísticas jugadores'<br/>
+Se abrirá un data grid mostrandónos toda la información que haya en la base de datos de los jugadores.<br/>
+![image](https://user-images.githubusercontent.com/97369033/202148635-84f294bf-ab21-445f-9582-503464165d62.png)
+
+Podremos agregar un jugador como también borrar uno.<br/>
+![image](https://user-images.githubusercontent.com/97369033/202148651-bab18c76-b3a8-44de-ab11-9b7a3f0ad312.png)
+
+### 'Registro de las partidas'
+
+Nos abrirá un formulario que nos permite mostrar los registros que esten serializados en XML o en JSON, y nos permite mostrar los registros de partidas bot vs bot y usuario vs bot<br/>
+![image](https://user-images.githubusercontent.com/97369033/202149259-1aa2f5c3-d444-42c8-969d-33a213e0281d.png)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Justificación técnica
 
 ### SQL
 
