@@ -20,7 +20,6 @@ namespace Test_Entidades
             j1.RecibirCarta(new Carta(4, EPalo.Basto));
             j1.RecibirCarta(new Carta(12, EPalo.Espada));
             
-
             // Act
             envido = j1.CalcularEnvido();
 

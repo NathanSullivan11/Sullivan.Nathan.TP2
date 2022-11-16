@@ -17,7 +17,6 @@ namespace Test_Entidades
             mazoMezclado = Juego.ObtenerMazoMezclado().ToArray();
 
             // Assert
-
             Assert.AreNotEqual(mazoSinMezclar, mazoMezclado);
         }
 

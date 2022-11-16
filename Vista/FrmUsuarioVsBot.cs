@@ -10,7 +10,6 @@ namespace Vista
     public partial class FrmUsuarioVsBot : Form
     {
         public Partida partida;
-        private RegistroPartida registroPartida;
         private CancellationToken tokenCancelacion;
         private CancellationTokenSource fuenteTokenCancelacion;
         private Task tareaPartida;

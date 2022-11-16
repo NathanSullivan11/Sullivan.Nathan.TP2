@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 
 namespace Entidades
@@ -22,7 +19,6 @@ namespace Entidades
         private bool trucoNoQuerido;
         private bool seJugoTruco;
         private bool seJugoEnvido;
-        private bool trucoCantado;
         private int puntajeParaGanar;
         private int puntosDelTruco;
         private bool partidaFinalizada;
@@ -123,7 +119,7 @@ namespace Entidades
             this.jugador1 = jugador1;
             this.jugador2 = jugador2;
             this.hayGanador = null;
-            this.puntajeParaGanar = 4;
+            this.puntajeParaGanar = 8;
             this.mesa = new Mesa();
 
         }
@@ -154,7 +150,7 @@ namespace Entidades
             if(this.actualizarLog is not null)
             {
                 
-                this.actualizarLog.Invoke($"\nGANADOR J{this.hayGanador.Puntaje} - {this.hayGanador.Nombre} ");
+                this.actualizarLog.Invoke($"\nGANÓ EL J{this.hayGanador.IdJugador}, {this.hayGanador.Nombre} ");
 
             }
             this.partidaFinalizada = true;
@@ -229,11 +225,10 @@ namespace Entidades
             {
                 this.JugarUnaBaza();
                 
-            } while (!this.tokenCancelacion.IsCancellationRequested && !this.trucoNoQuerido && this.AlguienGanoLaMano() is null && this.bazasJugadas < 3);
+            } while (!this.partidaCancelada && !this.trucoNoQuerido && this.AlguienGanoLaMano() is null && this.bazasJugadas < 3);
            
-            if(this.tokenCancelacion.IsCancellationRequested)
+            if(this.partidaCancelada)
             {
-                this.partidaCancelada = true;
                 return;
             }
 
@@ -318,9 +313,8 @@ namespace Entidades
 
         private void CompararBaza()
         {
-            if(this.tokenCancelacion.IsCancellationRequested)
-            {
-                this.partidaCancelada = true;
+            if(this.partidaCancelada)
+            { 
                 return;
             }
             switch (Juego.CompararCartas(this.mesa.cartasTiradasPorJ1[this.bazasJugadas], this.mesa.cartasTiradasPorJ2[this.bazasJugadas]))
@@ -459,9 +453,13 @@ namespace Entidades
 
         private void EvaluarCartaATirar(Jugador jugador)
         {
-            if (bazasJugadas == 1 && jugador.BazasGanadas == 0 || bazasJugadas == 2 && jugador.BazasGanadas == 1)
+            if (this.bazasJugadas == 1 && jugador.BazasGanadas == 0 || this.bazasPardadas == 1 && jugador.BazasGanadas == 1)
             {
                 jugador.DelegadoTiradoCarta = jugador.TirarCartaMasAlta;
+            }
+            else if(jugador.BazasGanadas == 1 && this.bazasJugadas == 1)
+            {
+                jugador.DelegadoTiradoCarta = jugador.TirarCartaMasBaja;
             }
             else
             {
@@ -524,7 +522,6 @@ namespace Entidades
         private bool JugarTruco(Jugador jugadorQueCanta)
         {
             this.seJugoTruco = true;
-            this.trucoCantado = true;
             if (this.enviarMensaje is not null)
             {
                 this.enviarMensaje.Invoke("TRUCO", jugadorQueCanta.EsUsuario);               
@@ -727,6 +724,7 @@ namespace Entidades
         public void CancelarPartida(CancellationTokenSource tokenSource)
         {
             tokenSource.Cancel();
+            this.partidaCancelada = true;
             this.TerminarPartida();
         }
 

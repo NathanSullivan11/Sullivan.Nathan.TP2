@@ -21,7 +21,7 @@ namespace Vista
         {
             InitializeComponent();
             this.jugadores = new List<Jugador>();
-            this.accesoDatosJugadores = new JugadoresADO();
+            this.accesoDatosJugadores = new JugadoresADO(Juego.nombreServer,Juego.nombreBaseDeDatos);
             this.tablaDatos = new DataTable();
             this.InicializarDataTable();
         }
@@ -38,6 +38,7 @@ namespace Vista
             this.tablaDatos.Columns.Add("Jugadas", typeof(int));
             this.tablaDatos.Columns.Add("Ganadas", typeof(int));
             this.tablaDatos.Columns.Add("Perdidas", typeof(int));
+            this.tablaDatos.Columns.Add("Es Usuario", typeof(bool));
         }
 
         internal void ActualizarTablaDeDatos()
@@ -47,11 +48,12 @@ namespace Vista
             {
                 int id = item.idBaseDeDatos;
                 string nombre = item.Nombre;
-                int jug = item.PartidasJugadas;
-                int perd = item.PartidasPerdidas;
-                int gan = item.PartidasGanadas;
+                int jugadas = item.PartidasJugadas;
+                int ganadas = item.PartidasGanadas;
+                int perdidas = item.PartidasPerdidas;
+                bool esUsuario = item.EsUsuario;
 
-                this.tablaDatos.Rows.Add(id,nombre, jug, gan, perd);
+                this.tablaDatos.Rows.Add(id,nombre, jugadas, ganadas, perdidas, esUsuario);
             }
         }
 
@@ -59,6 +61,7 @@ namespace Vista
         {
             this.txt_NombreIngresado.Visible = true;
             this.btn_Agregar.Visible = true;
+            this.chk_esUsuario.Visible = true;
 
         }
 
@@ -72,12 +75,13 @@ namespace Vista
         {
             if(!string.IsNullOrEmpty(this.txt_NombreIngresado.Text))
             {
-                if(accesoDatosJugadores.Agregar(this.txt_NombreIngresado.Text,0))
+                if(accesoDatosJugadores.Agregar(this.txt_NombreIngresado.Text,this.chk_esUsuario.Checked))
                 {
                     MessageBox.Show("Se agrego correctamente");
                 }
                 this.btn_Agregar.Visible = false;
                 this.txt_NombreIngresado.Visible = false;
+                this.chk_esUsuario.Visible = false;
             }
         }
 

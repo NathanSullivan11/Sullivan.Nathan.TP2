@@ -34,6 +34,7 @@ namespace Vista
             this.btn_EliminarJugador = new System.Windows.Forms.Button();
             this.txt_NombreIngresado = new System.Windows.Forms.TextBox();
             this.btn_Agregar = new System.Windows.Forms.Button();
+            this.chk_esUsuario = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_EstadisticasJugadores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,7 +88,7 @@ namespace Vista
             // 
             // btn_Agregar
             // 
-            this.btn_Agregar.Location = new System.Drawing.Point(465, 130);
+            this.btn_Agregar.Location = new System.Drawing.Point(465, 150);
             this.btn_Agregar.Name = "btn_Agregar";
             this.btn_Agregar.Size = new System.Drawing.Size(59, 23);
             this.btn_Agregar.TabIndex = 3;
@@ -96,19 +97,34 @@ namespace Vista
             this.btn_Agregar.Visible = false;
             this.btn_Agregar.Click += new System.EventHandler(this.btn_Agregar_Click);
             // 
+            // chk_esUsuario
+            // 
+            this.chk_esUsuario.AutoSize = true;
+            this.chk_esUsuario.ForeColor = System.Drawing.Color.White;
+            this.chk_esUsuario.Location = new System.Drawing.Point(450, 130);
+            this.chk_esUsuario.Name = "chk_esUsuario";
+            this.chk_esUsuario.Size = new System.Drawing.Size(83, 19);
+            this.chk_esUsuario.TabIndex = 4;
+            this.chk_esUsuario.Text = "checkBox1";
+            this.chk_esUsuario.UseVisualStyleBackColor = true;
+            this.chk_esUsuario.Visible = false;
+            // 
             // FrmEstadisticasJugadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(54)))), ((int)(((byte)(1)))));
             this.ClientSize = new System.Drawing.Size(565, 299);
+            this.Controls.Add(this.chk_esUsuario);
             this.Controls.Add(this.btn_Agregar);
             this.Controls.Add(this.txt_NombreIngresado);
             this.Controls.Add(this.btn_EliminarJugador);
             this.Controls.Add(this.btn_AgregarJugador);
             this.Controls.Add(this.dgv_EstadisticasJugadores);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(581, 338);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(581, 338);
             this.Name = "FrmEstadisticasJugadores";
             this.Text = "Estadísticas de jugadores";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEstadisticasJugadores_FormClosing);
@@ -126,5 +142,6 @@ namespace Vista
         private System.Windows.Forms.Button btn_EliminarJugador;
         private System.Windows.Forms.TextBox txt_NombreIngresado;
         private System.Windows.Forms.Button btn_Agregar;
+        private System.Windows.Forms.CheckBox chk_esUsuario;
     }
 }

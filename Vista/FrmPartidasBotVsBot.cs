@@ -17,16 +17,14 @@ namespace Vista
         List<Partida> partidasEnJuego;
         List<UC_Mesa> mesas;
         JugadoresADO jugadores;
-        Task actualizarListaPartidasEnJuego;
-        int salasCreadas;
-
+ 
         public FrmPartidasBotVsBot()
         {
             InitializeComponent();
-            jugadores = new JugadoresADO();
+            jugadores = new JugadoresADO(Juego.nombreServer, Juego.nombreBaseDeDatos);
             partidasEnJuego = new List<Partida>();
             mesas = new List<UC_Mesa>();
-            salasCreadas = 0;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -82,7 +80,6 @@ namespace Vista
                 this.mesas.Add(mesaPrevisualizacion);
                 this.partidasEnJuego.Add(mesaPrevisualizacion.Partida);
                 mesaPrevisualizacion.FormMostrarSala.cerrarPartidaSinGuardar += EliminarPartida;
-                salasCreadas++;
                 this.flowLayoutPanel1.Controls.Add(mesaPrevisualizacion);
             }
             else

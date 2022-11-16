@@ -14,16 +14,30 @@ namespace Entidades
         private static List<RegistroPartida> registroPartidasUserVsBotXML; 
         private static List<RegistroPartida> registroPartidasBotVsBotJSON;
         private static List<RegistroPartida> registroPartidasUserVsBotJSON;
+        public const string nombreBaseDeDatos = "JuegoTrucoBD";
+        public const string nombreServer = "DESKTOP-A3F48MG";
+
+
+        #region Propiedades
+        public static List<Carta> Mazo { get => mazo; }
+        public static List<Jugador> Jugadores { get => jugadores; }
+        public static List<RegistroPartida> RegistroPartidasBotVsBotXML { get => registroPartidasBotVsBotXML; }
+        public static List<RegistroPartida> RegistroPartidasUserVsBotXML { get => registroPartidasUserVsBotXML; }
+        public static List<RegistroPartida> RegistroPartidasBotVsBotJSON { get => registroPartidasBotVsBotJSON; }
+        public static List<RegistroPartida> RegistroPartidasUserVsBotJSON { get => registroPartidasUserVsBotJSON; }
+        #endregion
 
         static Juego()
         {
             mazo = InicializarMazo();
-            jugadores = new JugadoresADO().ObtenerJugadores();
-            Juego.IncializarRegistros();
+            jugadores = new JugadoresADO(nombreServer,nombreBaseDeDatos).ObtenerJugadores();
+            Juego.IncializarRegistrosDePartidas();
            
         }
-
-        public static void IncializarRegistros()
+        /// <summary>
+        /// Inicializa los registros con los que ya existen en archivos json o xml
+        /// </summary>
+        public static void IncializarRegistrosDePartidas()
         {
             registroPartidasBotVsBotXML = new List<RegistroPartida>();
             registroPartidasUserVsBotXML = new List<RegistroPartida>();
@@ -52,15 +66,21 @@ namespace Entidades
             }
             catch (Exception) { }
 
-
         }
-
+        /// <summary>
+        /// Inicializa el mazo de cartas, intenta deserializarlo de un Json, y si no lo encuentra al archivo lo hardcodea
+        /// </summary>
+        /// <returns></returns>
         private static List<Carta> InicializarMazo()
         {
-            List<Carta> mazo;
-
-            SerializadorJSON<List<Carta>> serializadorJson = new SerializadorJSON<List<Carta>>();
-            mazo = serializadorJson.Deserializar("MazoDeCartas");
+            List<Carta> mazo = null;
+            try
+            {
+                SerializadorJSON<List<Carta>> serializadorJson = new SerializadorJSON<List<Carta>>();
+                mazo = serializadorJson.Deserializar("MazoDeCartas");
+            }
+            catch (Exception)
+            { }
             if (mazo is null)
             {
                 mazo = new List<Carta>();
@@ -161,7 +181,12 @@ namespace Entidades
             }
             return retorno;
         }
-
+        /// <summary>
+        /// Compara las cartas por valor
+        /// </summary>
+        /// <param name="envidoDelQueCanto"></param>
+        /// <param name="envidoDelQueResponde"></param>
+        /// <returns>1 = si el primer envido es mejor que el segundo. -1 = si el 2do es mejor que el 1r. 0; si son iguales</returns>
         public static int CompararEnvido(int envidoDelQueCanto, int envidoDelQueResponde)
         {
             int retorno = 0;
@@ -176,7 +201,10 @@ namespace Entidades
             }
             return retorno;
         }
-
+        /// <summary>
+        /// Obtiene un bot disponible para jugar
+        /// </summary>
+        /// <returns></returns>
         public static Jugador ObtenerJugadorBotDisponible()
         {
             int indiceRandom;
@@ -192,7 +220,10 @@ namespace Entidades
             Juego.Jugadores[indiceRandom].EstaJugando = true;
             return Juego.Jugadores[indiceRandom];
         }
-
+        /// <summary>
+        /// Obtiene un usuario disponible para jugar
+        /// </summary>
+        /// <returns></returns>
         public static Jugador ObtenerJugadorUsuarioDisponible()
         {
             foreach(Jugador item in Juego.Jugadores)
@@ -221,13 +252,17 @@ namespace Entidades
             }
             return false;
         }
-
+        /// <summary>
+        /// Actualiza al jugador ya existente en la base de datos
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <returns></returns>
         public static string ActualizarJugadorEnBaseDeDatos(Jugador jugador)
         {
             string retorno = $"Jugador con id: {jugador.idBaseDeDatos} actualizado correctamente";
             try
             {
-                new JugadoresADO().Actualizar(jugador);
+                new JugadoresADO(nombreServer, nombreBaseDeDatos).Actualizar(jugador);
             }
             catch(Exception e)
             {
@@ -235,14 +270,23 @@ namespace Entidades
             }
             return retorno;
         }
-
+        /// <summary>
+        /// Genera el registro de la partida, para luego ser guardado en un archivo
+        /// </summary>
+        /// <param name="partida"></param>
+        /// <returns></returns>
         public static RegistroPartida GenerarRegistroPartida(Partida partida)
         {
             int codigo =(int)new Random().Next(0, 5555);
             RegistroPartida registro = new RegistroPartida(codigo, DateTime.Now, partida.HayGanador.Nombre, partida.ObtenerOponente(partida.HayGanador).Nombre, partida.ManosJugadas);
             return registro;
         }
-
+        /// <summary>
+        /// Serializa el registro de una partida en XML
+        /// </summary>
+        /// <param name="partida"></param>
+        /// <param name="esPartidasBotVsBot"></param>
+        /// <returns></returns>
         public static string GuardarRegistroPartidaXML(Partida partida, bool esPartidasBotVsBot)
         {          
             bool seAgrego = false;
@@ -271,7 +315,12 @@ namespace Entidades
             
             return retorno;
         }
-
+        /// <summary>
+        /// Serializa el registro de una partida en JSON
+        /// </summary>
+        /// <param name="partida"></param>
+        /// <param name="esPartidasBotVsBot"></param>
+        /// <returns></returns>
         public static string GuardarRegistroPartidaJSON(Partida partida, bool esPartidasBotVsBot)
         {
             bool seAgrego = false;
@@ -298,7 +347,12 @@ namespace Entidades
 
             return retorno;
         }
-
+        /// <summary>
+        /// Obtiene la lista de registros dependiendo de; en que extension esten serializados y si los registros son de bot vs bot o usuario vs bot
+        /// </summary>
+        /// <param name="tipoArchivo"></param>
+        /// <param name="partidasBotVsBot"></param>
+        /// <returns></returns>
         public static List<RegistroPartida> ObtenerRegistrosPartidas(string tipoArchivo, bool partidasBotVsBot)
         {
             List<RegistroPartida> listaRegistros = null;
@@ -327,14 +381,6 @@ namespace Entidades
 
             return listaRegistros;  
         }
-
-        
-        public static List<Carta> Mazo { get => mazo; }
-        public static List<Jugador> Jugadores { get => jugadores; }
-        public static List<RegistroPartida> RegistroPartidasBotVsBotXML { get => registroPartidasBotVsBotXML; }
-        public static List<RegistroPartida> RegistroPartidasUserVsBotXML { get => registroPartidasUserVsBotXML; }
-        public static List<RegistroPartida> RegistroPartidasBotVsBotJSON { get => registroPartidasBotVsBotJSON; }
-        public static List<RegistroPartida> RegistroPartidasUserVsBotJSON { get => registroPartidasUserVsBotJSON; }
 
     }
 }

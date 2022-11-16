@@ -117,6 +117,10 @@ namespace Vista
             this.Controls.Add(this.btn_EstadisticasPartidasUsuarioBot);
             this.Controls.Add(this.btn_EstadisticasPartidasBotBot);
             this.Controls.Add(this.dtg_RegistroPartidas);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(761, 330);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(761, 330);
             this.Name = "FrmRegistroPartidas";
             this.Text = "Registro partidas";
             this.Load += new System.EventHandler(this.FrmRegistroPartidas_Load);

@@ -10,7 +10,7 @@ namespace Test_Entidades
         public void Test_ObtenerJugadores()
         {
             // Arrange
-            JugadoresADO accesoDatos = new JugadoresADO();
+            JugadoresADO accesoDatos = new JugadoresADO(Juego.nombreServer,Juego.nombreBaseDeDatos);
 
             // Act 
             List<Jugador> lista = accesoDatos.ObtenerJugadores();

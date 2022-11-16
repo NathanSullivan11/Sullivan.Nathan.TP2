@@ -336,6 +336,10 @@ namespace Vista
             this.Controls.Add(this.panel_tablaPuntajes);
             this.Controls.Add(this.pictureBox_Usuario);
             this.Controls.Add(this.pictureBox_bot);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(896, 768);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(896, 768);
             this.Name = "FrmUsuarioVsBot";
             this.Text = "Usuario vs BOT";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmUsuarioVsBot_FormClosing);

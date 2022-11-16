@@ -134,8 +134,12 @@ namespace Vista
             this.Controls.Add(this.btn_GuardarEnJson);
             this.Controls.Add(this.btn_GuardarEnTxt);
             this.Controls.Add(this.richTBox_InformacionSalasAbiertas);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(411, 512);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(411, 512);
             this.Name = "FrmMostrarPartidaBotVsBot";
-            this.Text = "FrmMostrar";
+            this.Text = "Seguimiento de partida";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMostrar_FormClosing);
             this.Load += new System.EventHandler(this.FrmMostrar_Load);
             this.ResumeLayout(false);

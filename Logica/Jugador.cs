@@ -27,6 +27,15 @@ namespace Entidades
         private bool esUsuario;
         public event Func<string, bool> obtenerRespuestaUsuario;
 
+
+        #region Propiedades
+        public List<Carta> CartasEnMano { get => this.cartasEnMano; }
+        public int CantidadCartasEnMano { get => this.cartasEnMano.Count; }
+        public string Nombre { get => this.nombre; }
+        public int BazasGanadas { get => this.bazasGanadas; set => this.bazasGanadas = value; }
+        public Carta CartaTirada { get => this.cartaTirada; set => this.cartaTirada = value; }
+        #endregion
+
         public Jugador()
         {
             this.cartasIniciales = new List<Carta>(3);
@@ -50,7 +59,10 @@ namespace Entidades
             this.idBaseDeDatos = id;
         }
 
-
+        /// <summary>
+        /// Recibe la carta que se le reparte y la guarda en una lista
+        /// </summary>
+        /// <param name="carta"></param>
         public void RecibirCarta(Carta carta)
         {
             if (this.cartasIniciales.Count < 3)
@@ -88,13 +100,18 @@ namespace Entidades
                 return TirarCartaMasBaja();
             }
         }
-
+        /// <summary>
+        /// Elimina de su mano la carta que tiró
+        /// </summary>
         public void EliminarCartaTiradaDeMano()
         {
             this.cartasEnMano.Remove(this.cartaTirada);
         }
 
-
+        /// <summary>
+        /// Evalúa si tiene buena mano para truco, tomando como parámetro tener alguna carta mejor que un 2
+        /// </summary>
+        /// <returns></returns>
         public bool TengoBuenaManoParaTruco()
         {
             bool cartaMejorQueUnTres = false;
@@ -107,7 +124,12 @@ namespace Entidades
             }
             return cartaMejorQueUnTres;
         }
-
+        /// <summary>
+        /// Recibe la carta tirada por el oponente y evalúa si tiene una carta mejor para tirar
+        /// </summary>
+        /// <param name="cartaDelOponente"></param>
+        /// <param name="cartaGanadora"></param>
+        /// <returns></returns>
         private bool TengoCartaGanadora(Carta cartaDelOponente, out Carta cartaGanadora)
         {
             bool tengoCartaGanadora = false;
@@ -173,13 +195,6 @@ namespace Entidades
 
             return sb.ToString();
         }
-
-
-        public List<Carta> CartasEnMano { get => this.cartasEnMano; }
-        public int CantidadCartasEnMano { get => this.cartasEnMano.Count; }
-        public string Nombre { get => this.nombre; }
-        public int BazasGanadas { get => this.bazasGanadas; set => this.bazasGanadas = value; }
-        public Carta CartaTirada { get => this.cartaTirada; set => this.cartaTirada = value; }
 
 
         public bool CantarEnvido()
@@ -272,7 +287,10 @@ namespace Entidades
 
             return respuesta;
         }
-
+        /// <summary>
+        /// Devuelve la carta individual con envido mas alto
+        /// </summary>
+        /// <returns></returns>
         internal int CartaConEnvidoMasAlto()
         {
             int mejorEnvido = 0;
@@ -295,7 +313,11 @@ namespace Entidades
         {
             return carta1.Palo == carta2.Palo;
         }
-
+        /// <summary>
+        /// Se pregunta si tiene 2 cartas del mismo palo para luego poder calcular el envido total
+        /// </summary>
+        /// <param name="palo"></param>
+        /// <returns></returns>
         internal bool TengoDosCartasDelMismoPalo(out EPalo palo)
         {
             bool tengoDosDelMismoPalo = false;

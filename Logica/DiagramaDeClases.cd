@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Entidades.JugadoresADO">
+    <Position X="19.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAQQAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAE=</HashCode>
+      <FileName>DAOs\JugadoresADO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.SerializadorJSON&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Serializaciones\SerializadorJSON.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Entidades.SerializadorXML&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAACAAAAAAAAAAAAAAAAAAQABAAAAAAAA=</HashCode>
+      <FileName>Serializaciones\SerializadorXML.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Entidades.Carta">
+    <Position X="12" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBAAAAAAAAQAAEgEAAAAAAAAAAAIAAACEAAAABAQA=</HashCode>
+      <FileName>Carta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Juego">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJSAAAAQABAEAIAAAAAEACAAEwCggAIKAAAACAiAAAg=</HashCode>
+      <FileName>Juego.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Jugador">
+    <Position X="4" Y="3" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Entidades.Jugador.DelegadoTirarCarta" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Jugador.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CCAJAsACCjJACICMhACIiMAUgBioBMACGAACAJAgAwA=</HashCode>
+      <FileName>Jugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.ManejadorArchivoTxt">
+    <Position X="17.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ManejadorArchivoTxt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Mesa">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mesa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Partida">
+    <Position X="2.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQlgBAAAQEhUCAFFADBAjQEJwEZAISECAARgDRoYAAg=</HashCode>
+      <FileName>Partida.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.RegistroPartida">
+    <Position X="10" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAgAIIAAAAAAAAIEAAACIAAAAAAAAAAAAIAAAACIAAA=</HashCode>
+      <FileName>RegistroPartida.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Entidades.ISerializarDeserializar&lt;T&gt;">
+    <Position X="15.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Serializaciones\ISerializarDeserializar.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="EPalo">
+    <Position X="14" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAABAAgAAAAAAAAAAg=</HashCode>
+      <FileName>EPalo.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

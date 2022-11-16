@@ -10,9 +10,9 @@ namespace Entidades
         private SqlConnection conexion;
         private SqlCommand comando;
         
-        public JugadoresADO()
+        public JugadoresADO(string server, string nombreBaseDeDatos)
         {
-            conexion = new SqlConnection("Server=DESKTOP-A3F48MG;Database=JuegoTrucoBD;Trusted_Connection=True;encrypt=false");
+            conexion = new SqlConnection($"Server={server};Database={nombreBaseDeDatos};Trusted_Connection=True;encrypt=false");
             comando = new SqlCommand();
             comando.CommandType = CommandType.Text;
             comando.Connection = conexion;
@@ -122,7 +122,7 @@ namespace Entidades
 
         }
 
-        public bool Agregar(string nombre, int esUsuario)
+        public bool Agregar(string nombre, bool esUsuario)
         {
             bool seAgrego = false;
             try

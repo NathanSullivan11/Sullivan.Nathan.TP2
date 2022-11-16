@@ -47,34 +47,6 @@ namespace Entidades
             
         }
 
-        public bool Serializar(T datos, string carpeta, string nombreArchivo)
-        {
-            bool retorno = false;
-            string rutaMasCarpeta = ruta + "\\" + carpeta;
-            string rutaCompleta = rutaMasCarpeta + "\\" + nombreArchivo + ".json";
-
-            try
-            {
-                if (!Directory.Exists(rutaMasCarpeta))
-                {
-                    Directory.CreateDirectory(rutaMasCarpeta);
-                }
-                using (StreamWriter streamWriter = new StreamWriter(rutaCompleta))
-                {
-                    this.xmlSerializer = new XmlSerializer(typeof(T));
-
-                    this.xmlSerializer.Serialize(streamWriter, datos);
-                }
-                retorno = true;
-            }
-            catch (Exception)
-            {
-                throw new Exception($"No se ha podido serializar en xml datos del tipo {typeof(T).ToString()}");
-            }
-            return retorno;
-
-        }
-
         public T Deserializar(string nombreArchivo)
         {
             T datos = default;

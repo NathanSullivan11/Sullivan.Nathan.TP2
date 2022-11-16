@@ -147,6 +147,10 @@ namespace Vista
             this.Controls.Add(this.panel_MesasIA);
             this.Controls.Add(this.panel_Header);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1117, 641);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1117, 641);
             this.Name = "FrmLobbyPrincipal";
             this.Text = "Lobby";
             this.Load += new System.EventHandler(this.FrmLobbyPrincipal_Load);
