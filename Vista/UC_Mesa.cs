@@ -12,6 +12,9 @@ using Entidades;
 
 namespace Vista
 {
+    /// <summary>
+    /// Control personalizado para mostrar partidas
+    /// </summary>
     public partial class UC_Mesa : UserControl
     {
         private Partida partida;
@@ -27,8 +30,6 @@ namespace Vista
 
         public UC_Mesa(Partida partida) : this()
         {
-
-
             this.partida = partida;
             this.SetearDatosDePartida();
             this.GenerarTokenDeCancelacion();
@@ -74,16 +75,6 @@ namespace Vista
             this.formMostrarSala.Show();
         }
 
-        public Partida Partida
-        {
-            get { return this.partida; }
-        }
-
-        public FrmMostrarPartidaBotVsBot FormMostrarSala
-        {
-            get { return this.formMostrarSala; }
-        }
-
         private void CancelarPartida()
         {
             this.tokenSource.Cancel();
@@ -108,5 +99,14 @@ namespace Vista
             this.token = this.tokenSource.Token;
         }
 
+        public FrmMostrarPartidaBotVsBot FormMostrarSala
+        {
+            get { return this.formMostrarSala; }
         }
+
+        public Partida Partida
+        {
+            get { return this.partida; }
+        }
+    }
 }

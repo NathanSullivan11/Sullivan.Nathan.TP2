@@ -314,6 +314,15 @@ namespace Entidades
             return tengoDosDelMismoPalo;
         }
 
+        public override bool Equals(object obj)
+        {
+            if(obj is Jugador auxJugador)
+            {
+                return auxJugador.idBaseDeDatos == this.idBaseDeDatos;
+            }
+            return false;
+        }
+
         public override string ToString()
         {
             return $"{this.nombre} - Jugadas: {this.partidasJugadas} - Ganadas: {this.partidasGanadas} - Perdidas: {this.partidasPerdidas}";

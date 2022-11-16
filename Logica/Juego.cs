@@ -55,13 +55,6 @@ namespace Entidades
 
         }
 
-        public static List<Carta> Mazo { get => mazo; }
-        public static List<Jugador> Jugadores { get => jugadores; }
-        public static List<RegistroPartida> RegistroPartidasBotVsBotXML { get => registroPartidasBotVsBotXML; }
-        public static List<RegistroPartida> RegistroPartidasUserVsBotXML { get => registroPartidasUserVsBotXML; }
-        public static List<RegistroPartida> RegistroPartidasBotVsBotJSON { get => registroPartidasBotVsBotJSON; }
-        public static List<RegistroPartida> RegistroPartidasUserVsBotJSON { get => registroPartidasUserVsBotJSON; }
-
         private static List<Carta> InicializarMazo()
         {
             List<Carta> mazo;
@@ -334,6 +327,14 @@ namespace Entidades
 
             return listaRegistros;  
         }
+
+        
+        public static List<Carta> Mazo { get => mazo; }
+        public static List<Jugador> Jugadores { get => jugadores; }
+        public static List<RegistroPartida> RegistroPartidasBotVsBotXML { get => registroPartidasBotVsBotXML; }
+        public static List<RegistroPartida> RegistroPartidasUserVsBotXML { get => registroPartidasUserVsBotXML; }
+        public static List<RegistroPartida> RegistroPartidasBotVsBotJSON { get => registroPartidasBotVsBotJSON; }
+        public static List<RegistroPartida> RegistroPartidasUserVsBotJSON { get => registroPartidasUserVsBotJSON; }
 
     }
 }

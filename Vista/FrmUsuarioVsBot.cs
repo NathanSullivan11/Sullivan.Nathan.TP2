@@ -19,39 +19,56 @@ namespace Vista
         public FrmUsuarioVsBot()
         {
             InitializeComponent();
-
-            this.OcultarMensajesJugadores();
+            
             this.tokenCancelacion = new CancellationToken();
             this.fuenteTokenCancelacion = new CancellationTokenSource();
             this.tokenCancelacion = this.fuenteTokenCancelacion.Token;
         }
 
-        public FrmUsuarioVsBot(Jugador usuario, Jugador maquina) :this()
+        private Partida InstanciarPartida()
         {
-           
-        }
 
-        private void btn_Jugar_Click(object sender, EventArgs e)
-        {
             this.Size = new System.Drawing.Size(896, 768);
             this.btn_Jugar.Enabled = false;
             Jugador j1;
             j1 = Juego.ObtenerJugadorUsuarioDisponible();
-            if(j1 is null)
-            {   
-                j1 = new Jugador("Nathan",0,0,0,true);
+            if (j1 is null)
+            {
+                j1 = new Jugador("Nathan", 0, 0, 0, true);
             }
             Jugador j2 = Juego.ObtenerJugadorBotDisponible();
-            if(j2 is null)
+            if (j2 is null)
             {
-                j2 = new Jugador("Bot", 0, 0, 0, false);
+                MessageBox.Show("No hay bots disponibles para jugar, debe agregar uno para poder jugar");
+                this.btn_Jugar.Enabled = true;
+                this.Close();
             }
             j1.IdJugador = 1;
-            j1.obtenerRespuestaUsuario += this.respuestaUsuario;
+            j1.obtenerRespuestaUsuario += this.ObtenerRespuestaUsuario;
             j2.IdJugador = 2;
-            partida = new Partida(j1, j2);
 
+            return new Partida(j1, j2);
+        }
 
+        private void btn_Jugar_Click(object sender, EventArgs e)
+        {
+            partida = this.InstanciarPartida();
+            if (partida is null)
+            {
+                return;
+            }
+
+            this.AsignarEventosDePartida();
+
+            tareaPartida = new Task(() => partida.ComenzarPartida(tokenCancelacion));
+            tareaPartida.Start();
+        }
+
+        /// <summary>
+        /// Suscribe los delegado necesarios a sus respectivos eventos
+        /// </summary>
+        private void AsignarEventosDePartida()
+        {
             partida.repartirCarta += this.RepartirCarta;
             partida.actualizarPuntaje += this.ActualizarPuntaje;
             partida.pedirJugadaUsuario += TurnoUsuario;
@@ -60,11 +77,11 @@ namespace Vista
             partida.partidaTerminada += this.ReiniciarParaNuevaPartida;
             partida.partidaTerminada += this.ReiniciarParaNuevaMano;
             partida.enviarMensaje += this.ImprimirMensaje;
-
-            tareaPartida = new Task( () => partida.ComenzarPartida(tokenCancelacion));
-            tareaPartida.Start();
         }
 
+        /// <summary>
+        /// Prepara el entorno visual para una nueva partida
+        /// </summary>
         private void ReiniciarParaNuevaPartida()
         {
             if(InvokeRequired)
@@ -81,6 +98,8 @@ namespace Vista
                 this.OcultarMensajesJugadores();
                 this.MostrarBotonesGuardarRegistro();
                 this.Size = new System.Drawing.Size(290, 537);
+                this.MaximumSize = new System.Drawing.Size(290, 537);
+                this.MinimumSize = new System.Drawing.Size(290, 537);
             }
         }
 
@@ -90,7 +109,11 @@ namespace Vista
             this.btn_SerializarXml.Visible = true;
             this.btn_CerrarSinGuardar.Visible = true;
         }
-
+        /// <summary>
+        /// Muestra el mensaje enviado por la el jugador de la partida
+        /// </summary>
+        /// <param name="mensaje"></param>
+        /// <param name="esUsuario"></param>
         private void ImprimirMensaje(string mensaje, bool esUsuario)
         {
             if (InvokeRequired)
@@ -115,7 +138,9 @@ namespace Vista
 
             }      
         }
-
+        /// <summary>
+        /// Limpia las cartas en mesa para jugar una nueva mano
+        /// </summary>
         private void ReiniciarParaNuevaMano()
         {
             if (InvokeRequired)
@@ -131,7 +156,11 @@ namespace Vista
                 this.OcultarMensajesJugadores();
             }
         }
-
+        /// <summary>
+        /// Actualiza el puntaje de los jugadores
+        /// </summary>
+        /// <param name="puntajeJ1"></param>
+        /// <param name="puntajeJ2"></param>
         public void ActualizarPuntaje(int puntajeJ1, int puntajeJ2)
         {
             if (InvokeRequired)
@@ -145,7 +174,11 @@ namespace Vista
                 this.lbl_PuntajeBot.Text = puntajeJ2.ToString();
             }
         }
-
+        /// <summary>
+        /// Muestra la carta tirada por el jugador
+        /// </summary>
+        /// <param name="carta"></param>
+        /// <param name="esJugador1"></param>
         private void MostrarCarta(Carta carta, bool esJugador1)
         {
             if (InvokeRequired)
@@ -200,26 +233,27 @@ namespace Vista
             }
         }
 
-        private bool respuestaUsuario(string mensaje)
+        private bool ObtenerRespuestaUsuario(string mensaje)
         {
             bool respuesta = false;
             if (InvokeRequired)
             {
-                Func<string, bool> delegado = respuestaUsuario;
+                Func<string, bool> delegado = ObtenerRespuestaUsuario;
                 respuesta = (bool)this.Invoke(delegado, mensaje);
             }
             else
             {
-                if(MessageBox.Show(mensaje, "RESPONDER", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if(MessageBox.Show($"Jugador 2: {mensaje}", mensaje, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     respuesta = true;
-                }    
-
-               
+                }                  
             }
             return respuesta;
         }
-
+        /// <summary>
+        /// Despliega el formulario que le permite jugar el turno al usuario
+        /// </summary>
+        /// <returns></returns>
         private string TurnoUsuario()
         {
             string jugada = null;
@@ -277,7 +311,11 @@ namespace Vista
                 this.fuenteTokenCancelacion.Cancel();
             }
         }
-
+        /// <summary>
+        /// Serializa el registro de la partida en un archivo JSON
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_SerializarJson_Click(object sender, EventArgs e)
         {
             this.btn_SerializarJson.Enabled = false;
@@ -290,7 +328,11 @@ namespace Vista
                 this.Close();
             }                                 
         }
-
+        /// <summary>
+        /// Serializa el registro de la partida en un archivo XML
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_SerializarXml_Click(object sender, EventArgs e)
         {
             this.btn_SerializarXml.Enabled = false;

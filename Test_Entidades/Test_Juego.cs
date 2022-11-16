@@ -21,7 +21,7 @@ namespace Test_Entidades
             Assert.AreNotEqual(mazoSinMezclar, mazoMezclado);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void Test_CompararCartas()
         {
             // Arrange

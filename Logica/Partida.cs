@@ -202,7 +202,7 @@ namespace Entidades
             this.LimpiarMesa();
         }
 
-        private void CambiarMano()
+        public void CambiarMano()
         {
             this.jugador1.EsMano = !this.jugador1.EsMano;
             this.jugador2.EsMano = !this.jugador2.EsMano;
@@ -260,7 +260,7 @@ namespace Entidades
         }
 
 
-        private Jugador AlguienGanoLaMano()
+        public Jugador AlguienGanoLaMano()
         {          
             if (this.jugador1.BazasGanadas == 2 || this.bazasPardadas == 2 && this.jugador1.BazasGanadas == 1 || this.bazasPardadas == 1 && this.bazasJugadas == 2 && this.jugador1.BazasGanadas == 1)
             {

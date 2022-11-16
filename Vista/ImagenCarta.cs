@@ -13,6 +13,9 @@ using Vista.Properties;
 
 namespace Vista
 {
+    /// <summary>
+    /// Control personalizado para mostrar cartas
+    /// </summary>
     public partial class ImagenCarta : UserControl
     {
         private Carta carta;
