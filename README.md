@@ -54,6 +54,8 @@ Estos 4 temas me pareció razonable utilizarlos juntos, ya que a lo largo de mi 
 
 ![Captura de pantalla (38)](https://user-images.githubusercontent.com/97369033/202086750-dc59c2ae-3664-4c79-b864-9505ca07f5c6.png)
 
+![image](https://user-images.githubusercontent.com/97369033/202091347-2f5001db-9695-470a-90c5-e3161014f079.png)
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Escritura de archivos
